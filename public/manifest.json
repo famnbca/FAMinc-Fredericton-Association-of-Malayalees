@@ -1,15 +1,21 @@
 {
-  "short_name": "FAM",
-  "name": "Fredericton Association of malayalees",
+  "short_name": "FAM NB",
+  "name": "Fredericton Association of Malayalees",
+  "description": "Connecting and empowering the Malayalee and Indian community in Fredericton and New Brunswick, Canada.",
   "icons": [
     {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "images/logofam.avif",
+      "sizes": "192x192 512x512",
+      "type": "image/avif"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#e64a19",
   "background_color": "#ffffff"
 }

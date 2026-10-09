@@ -10,11 +10,11 @@ const iconMap = {
   FaWhatsapp: <FaWhatsapp />
 };
 
-// Custom premium gradients matching the original card colors
+// Custom modern gradients matching brand themes
 const gradientMap = {
-  '#d9534f': 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)', // Saffron/Tomato Red
-  '#3b5998': 'linear-gradient(135deg, #4267B2 0%, #2e4a82 100%)', // Facebook Blue
-  '#25D366': 'linear-gradient(135deg, #25D366 0%, #1c9c4b 100%)'  // WhatsApp Green
+  '#d9534f': 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)',
+  '#3b5998': 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+  '#25D366': 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
 };
 
 const WhatWeDo = () => {
@@ -32,47 +32,21 @@ const WhatWeDo = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12
+        staggerChildren: 0.1
       }
     }
   };
 
-  const getCardVariants = (index) => {
-    // Staggered rotation tilt, exactly matching the look and feel of the original design
-    const rotation = index === 0 ? -2 : index === 1 ? 2 : -1.5;
-    const xOffset = index === 0 ? -4 : index === 1 ? 4 : -2;
-
-    return {
-      hidden: { 
-        opacity: 0, 
-        y: 40,
-        rotate: rotation,
-        x: xOffset,
-      },
-      show: { 
-        opacity: 1, 
-        y: 0,
-        rotate: rotation,
-        x: xOffset,
-        transition: { 
-          type: 'spring', 
-          stiffness: 100, 
-          damping: 16 
-        } 
-      },
-      hover: {
-        scale: 1.04,
-        rotate: 0,
-        x: 0,
-        y: -6,
-        zIndex: 10,
-        transition: { 
-          type: 'spring', 
-          stiffness: 300, 
-          damping: 20 
-        }
-      }
-    };
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.5,
+        ease: 'easeOut'
+      } 
+    }
   };
 
   if (cardData.length === 0) return null;
@@ -84,54 +58,46 @@ const WhatWeDo = () => {
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        viewport={{ once: true, margin: '-80px' }}
+        viewport={{ once: true, margin: '-50px' }}
         sx={{
           display: 'flex',
           flexDirection: 'column',
           gap: 2.5,
           width: '100%',
-          pt: 1,
-          pb: 2
         }}
       >
-        {cardData.map((card, index) => {
-          const cardVar = getCardVariants(index);
+        {cardData.map((card) => {
           const cardGradient = gradientMap[card.color] || card.color;
 
           return (
             <Box
               key={card.id}
               component={motion.div}
-              variants={cardVar}
-              whileHover="hover"
-              sx={{
-                position: 'relative',
-              }}
+              variants={cardVariants}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.2 }}
             >
               <Card
                 sx={{
                   display: 'flex',
                   alignItems: 'center',
-                  padding: { xs: 2.5, sm: 3.25 },
+                  padding: { xs: 2.5, sm: 3 },
                   background: cardGradient,
                   borderRadius: 4,
-                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.12)',
-                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  boxShadow: '0 8px 24px -4px rgba(0, 0, 0, 0.12)',
+                  border: '1px solid rgba(255, 255, 255, 0.18)',
                   overflow: 'hidden',
                   color: '#ffffff',
-                  transition: 'box-shadow 0.3s ease',
+                  position: 'relative',
+                  transition: 'all 0.3s ease',
                   '&:hover': {
-                    boxShadow: `0 20px 40px ${card.color}40`,
+                    boxShadow: '0 16px 36px -6px rgba(0, 0, 0, 0.2)',
                     '& .brand-icon-wrapper': {
-                      transform: 'scale(1.1) rotate(5deg)',
+                      transform: 'scale(1.08)',
                       opacity: 0.95
                     },
-                    '& .action-button': {
-                      transform: 'translateY(-2px)',
-                      boxShadow: '0 6px 15px rgba(0, 0, 0, 0.2)',
-                      '& .btn-arrow': {
-                        transform: 'translateX(3px)',
-                      }
+                    '& .btn-arrow': {
+                      transform: 'translateX(3px)',
                     }
                   }
                 }}
@@ -147,7 +113,6 @@ const WhatWeDo = () => {
                         fontSize: '1.25rem',
                         letterSpacing: '-0.015em',
                         color: '#ffffff',
-                        fontFamily: "'Outfit', 'Baloo 2', sans-serif"
                       }}
                     >
                       {card.title}
@@ -156,10 +121,10 @@ const WhatWeDo = () => {
                     <Typography 
                       variant="body2" 
                       sx={{ 
-                        fontSize: '0.9rem', 
+                        fontSize: '0.88rem', 
                         lineHeight: 1.5,
-                        color: 'rgba(255, 255, 255, 0.9)',
-                        maxWidth: '290px',
+                        color: 'rgba(255, 255, 255, 0.92)',
+                        maxWidth: '320px',
                         mb: 2
                       }}
                     >
@@ -172,32 +137,32 @@ const WhatWeDo = () => {
                         href={card.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="action-button"
                         sx={{
                           backgroundColor: '#ffffff',
-                          color: card.color,
-                          fontWeight: 800,
-                          fontSize: '0.85rem',
+                          color: card.color === '#d9534f' ? '#e64a19' : card.color === '#3b5998' ? '#1d4ed8' : '#059669',
+                          fontWeight: 700,
+                          fontSize: '0.82rem',
                           borderRadius: '25px',
-                          px: 3.5,
-                          py: 1,
-                          boxShadow: 'none',
+                          px: 2.8,
+                          py: 0.8,
+                          boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                           textTransform: 'none',
                           display: 'inline-flex',
                           alignItems: 'center',
                           gap: 0.5,
-                          transition: 'all 0.3s ease',
+                          transition: 'all 0.25s ease',
                           '&:hover': {
                             backgroundColor: '#ffffff',
-                            color: card.color
+                            transform: 'translateY(-1px)',
+                            boxShadow: '0 4px 12px rgba(0,0,0,0.18)',
                           }
                         }}
                       >
-                        <span>Open Link</span>
+                        <span>Connect</span>
                         <ChevronRightIcon 
                           className="btn-arrow"
                           sx={{ 
-                            fontSize: '1.15rem', 
+                            fontSize: '1.1rem', 
                             transition: 'transform 0.2s ease' 
                           }} 
                         />
@@ -209,11 +174,10 @@ const WhatWeDo = () => {
                   <Box 
                     className="brand-icon-wrapper"
                     sx={{ 
-                      color: '#ffffff', 
-                      fontSize: '4.5rem', 
+                      color: 'rgba(255, 255, 255, 0.85)', 
+                      fontSize: { xs: '3.5rem', sm: '4.2rem' }, 
                       display: 'flex', 
                       alignItems: 'center',
-                      opacity: 0.85,
                       transition: 'all 0.3s ease',
                       flexShrink: 0
                     }}

@@ -4,7 +4,7 @@ import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeli
 import 'react-vertical-timeline-component/style.min.css';
 import moment from 'moment-timezone';
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
-import { Container, Grid, Select, MenuItem, Button, Alert, AlertTitle, Typography, Box, FormControl, InputLabel, Link } from '@mui/material';
+import { Container, Grid, Select, MenuItem, Button, Alert, AlertTitle, Typography, Box, FormControl, InputLabel, Link, Paper, Chip } from '@mui/material';
 import './EventSection.css';
 import Breadcrumbs from '../Breadcrumbs';
 import HelmetWrapper from '../HelmetWrapper'; 
@@ -54,7 +54,7 @@ const EventSection = () => {
 
   if (error) {
     return (
-      <Container sx={{ py: 10, textAlign: 'center' }}>
+      <Container sx={{ py: 12, textAlign: 'center' }}>
         <Typography color="error" variant="h5">Error: {error}</Typography>
       </Container>
     );
@@ -85,80 +85,115 @@ const EventSection = () => {
   const uniqueYears = [...new Set(events.map(event => new Date(event.date).getFullYear()))].sort((a, b) => b - a);
 
   return (
-    <Box sx={{ py: 6, mt: 8, minHeight: '100vh' }} className="event-section-page">
+    <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }} className="event-section-page">
       <HelmetWrapper 
-        pageTitle="Events - Fredericton Association of Malayalees" 
-        description="Explore upcoming events at the Fredericton Association of Malayalees." 
+        pageTitle="Events & Celebrations" 
+        description="Explore upcoming festivals, Onam feasts, cultural celebrations, sports tournaments, and community gatherings organized by the Fredericton Association of Malayalees." 
       />
       <Container maxWidth="lg">
         <Breadcrumbs />
         
-        <Typography 
-          variant="h3" 
-          sx={{ 
-            fontWeight: 800, 
-            mb: 4, 
-            mt: 2, 
-            letterSpacing: '-0.02em', 
-            color: '#e64a19',
-            textAlign: { xs: 'center', md: 'left' }
-          }}
-        >
-          Our Events
-        </Typography>
+        {/* Header */}
+        <Box sx={{ textAlign: 'center', mb: 5, mt: 2 }}>
+          <Typography
+            variant="overline"
+            sx={{
+              color: 'primary.main',
+              fontWeight: 800,
+              letterSpacing: '0.12em',
+              fontSize: '0.85rem'
+            }}
+          >
+            CELEBRATIONS & GATHERINGS
+          </Typography>
+          <Typography 
+            variant="h3" 
+            component="h1"
+            sx={{ 
+              fontWeight: 900, 
+              mb: 1.5, 
+              letterSpacing: '-0.02em', 
+              fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.4rem' },
+              color: '#0f172a'
+            }}
+          >
+            Community <Box component="span" sx={{ color: 'primary.main' }}>Events</Box>
+          </Typography>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ maxWidth: 650, mx: 'auto', fontSize: { xs: '1rem', md: '1.1rem' }, lineHeight: 1.6 }}
+          >
+            Explore our annual festivals, cultural programs, family picnics, sports tournaments, and upcoming community celebrations.
+          </Typography>
+        </Box>
 
         <Alert 
           severity="info" 
           sx={{ 
-            borderRadius: 3, 
+            borderRadius: 4, 
             mb: 5,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
-            border: '1px solid rgba(2, 136, 209, 0.12)'
+            p: 2.5,
+            boxShadow: '0 4px 14px rgba(2, 136, 209, 0.08)',
+            border: '1px solid rgba(2, 136, 209, 0.15)',
+            backgroundColor: '#f0f9ff'
           }}
         >
-          <AlertTitle sx={{ fontWeight: 800 }}>FAM Membership</AlertTitle>
-          For any membership details please reach out to <Link href="mailto:info@famnb.ca" sx={{ fontWeight: 700, color: '#0288d1', textDecoration: 'underline' }}>info@famnb.ca</Link>
+          <AlertTitle sx={{ fontWeight: 800, color: '#0369a1' }}>FAM Membership Notice</AlertTitle>
+          Members receive discounted event admission, early access, and priority seating. For membership inquiries, contact <Link href="mailto:info@famnb.ca" sx={{ fontWeight: 700, color: '#0288d1', textDecoration: 'underline' }}>info@famnb.ca</Link> or visit our <Link href="/joinus" sx={{ fontWeight: 700, color: '#e64a19' }}>Join Us</Link> page.
         </Alert>
 
         {/* Filter Selection Panel */}
-        <Grid container spacing={3} sx={{ mb: 6 }}>
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth size="medium">
-              <InputLabel id="year-filter-label">Filter by Year</InputLabel>
-              <Select
-                labelId="year-filter-label"
-                value={filterYear}
-                label="Filter by Year"
-                onChange={handleYearChange}
-                sx={{ borderRadius: 3, backgroundColor: 'white' }}
-              >
-                <MenuItem value="all">All Years</MenuItem>
-                {uniqueYears.map(year => (
-                  <MenuItem key={year} value={year.toString()}>{year}</MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+        <Paper
+          elevation={0}
+          sx={{
+            p: 3,
+            mb: 6,
+            borderRadius: 4,
+            backgroundColor: '#ffffff',
+            border: '1px solid rgba(0, 0, 0, 0.06)',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.03)'
+          }}
+        >
+          <Grid container spacing={3} alignItems="center">
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth size="medium">
+                <InputLabel id="year-filter-label">Filter by Year</InputLabel>
+                <Select
+                  labelId="year-filter-label"
+                  value={filterYear}
+                  label="Filter by Year"
+                  onChange={handleYearChange}
+                  sx={{ borderRadius: 3 }}
+                >
+                  <MenuItem value="all">All Years</MenuItem>
+                  {uniqueYears.map(year => (
+                    <MenuItem key={year} value={year.toString()}>{year}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <FormControl fullWidth size="medium">
+                <InputLabel id="month-filter-label">Filter by Month</InputLabel>
+                <Select
+                  labelId="month-filter-label"
+                  value={filterMonth}
+                  label="Filter by Month"
+                  onChange={handleMonthChange}
+                  sx={{ borderRadius: 3 }}
+                >
+                  <MenuItem value="all">All Months</MenuItem>
+                  {Array.from({ length: 12 }, (_, i) => (
+                    <MenuItem key={i + 1} value={(i + 1).toString()}>
+                      {new Date(0, i).toLocaleString('default', { month: 'long' })}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth size="medium">
-              <InputLabel id="month-filter-label">Filter by Month</InputLabel>
-              <Select
-                labelId="month-filter-label"
-                value={filterMonth}
-                label="Filter by Month"
-                onChange={handleMonthChange}
-                sx={{ borderRadius: 3, backgroundColor: 'white' }}
-              >
-                <MenuItem value="all">All Months</MenuItem>
-                {Array.from({ length: 12 }, (_, i) => (
-                  <MenuItem key={i + 1} value={(i + 1).toString()}>
-                    {new Date(0, i).toLocaleString('default', { month: 'long' })}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-        </Grid>
+        </Paper>
 
         {/* Timeline Grid */}
         <Box sx={{ mt: 2 }}>
@@ -172,16 +207,16 @@ const EventSection = () => {
                 <VerticalTimelineElement
                   key={index}
                   iconStyle={{ 
-                    background: isOpen ? '#2e7d32' : '#757575', 
+                    background: isOpen ? '#16a34a' : '#64748b', 
                     color: 'white',
-                    boxShadow: '0 0 0 4px #fff, inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05)'
+                    boxShadow: '0 0 0 4px #fff, 0 4px 12px rgba(0,0,0,0.15)'
                   }}
-                  icon={<i className={eventIcon} style={{ fontSize: '1.25rem' }}></i>}
+                  icon={<i className={eventIcon} style={{ fontSize: '1.2rem' }}></i>}
                   contentStyle={{ 
-                    borderRadius: '16px', 
+                    borderRadius: '20px', 
                     padding: '24px',
-                    boxShadow: '0 8px 30px rgba(0,0,0,0.03)',
-                    border: '1px solid rgba(0,0,0,0.05)',
+                    boxShadow: '0 10px 30px -5px rgba(0,0,0,0.05)',
+                    border: '1px solid rgba(0,0,0,0.06)',
                     backgroundColor: '#ffffff'
                   }}
                   contentArrowStyle={{ borderRight: '7px solid #ffffff' }}
@@ -192,13 +227,13 @@ const EventSection = () => {
                     {event.image && (
                       <Box 
                         sx={{ 
-                          width: { xs: '100%', sm: 120 }, 
-                          height: 120, 
+                          width: { xs: '100%', sm: 130 }, 
+                          height: 130, 
                           borderRadius: 3, 
                           overflow: 'hidden',
                           flexShrink: 0,
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-                          border: '1px solid rgba(0,0,0,0.08)'
+                          boxShadow: '0 4px 14px rgba(0,0,0,0.08)',
+                          border: '1px solid rgba(0,0,0,0.06)'
                         }}
                       >
                         <Box
@@ -214,55 +249,64 @@ const EventSection = () => {
                       </Box>
                     )}
                     <Box sx={{ flexGrow: 1, textAlign: 'left' }}>
-                      <Typography 
-                        variant="h5" 
-                        component="h3" 
-                        sx={{ 
-                          fontWeight: 700, 
-                          fontSize: '1.3rem', 
-                          mb: 1.5,
-                          color: 'text.primary'
-                        }}
-                      >
-                        {event.title}
-                      </Typography>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1, flexWrap: 'wrap' }}>
+                        <Typography 
+                          variant="h5" 
+                          component="h3" 
+                          sx={{ 
+                            fontWeight: 800, 
+                            fontSize: '1.25rem', 
+                            color: '#0f172a'
+                          }}
+                        >
+                          {event.title}
+                        </Typography>
+                        <Chip
+                          label={isOpen ? "Registration Open" : "Completed"}
+                          size="small"
+                          color={isOpen ? "success" : "default"}
+                          sx={{ fontWeight: 700, fontSize: '0.72rem' }}
+                        />
+                      </Box>
                       
-                      <Box sx={{ mb: 2, display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-                        <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Box sx={{ mb: 2, display: 'flex', flexDirection: 'column', gap: 0.6 }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: '0.9rem' }}>
                           <i className="fas fa-calendar-alt" style={{ color: '#e64a19', width: 16 }}></i> 
                           <strong>Date:</strong> {eventDate}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: '0.9rem' }}>
                           <i className="fas fa-clock" style={{ color: '#e64a19', width: 16 }}></i> 
                           <strong>Time:</strong> {event.time}
                         </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Typography variant="body2" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 1, fontSize: '0.9rem' }}>
                           <i className="fas fa-map-marker-alt" style={{ color: '#e64a19', width: 16 }}></i> 
                           <strong>Location:</strong> {event.location}
                         </Typography>
                       </Box>
 
-                      <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.5 }}>
+                      <Typography variant="body2" sx={{ color: 'text.secondary', mb: 3, lineHeight: 1.6, fontSize: '0.92rem' }}>
                         {event.details}
                       </Typography>
 
                       <Button
                         variant="contained"
-                        color={isOpen ? "success" : "inherit"}
                         disabled={!isOpen}
                         onClick={() => handleRegister(event.eventId, isOpen)}
                         sx={{
-                          borderRadius: '20px',
+                          borderRadius: '25px',
                           fontWeight: 700,
                           fontSize: '0.85rem',
                           px: 3.5,
-                          backgroundColor: isOpen ? '#2e7d32' : '#bdbdbd',
+                          py: 0.9,
+                          background: isOpen ? 'linear-gradient(135deg, #16a34a 0%, #15803d 100%)' : '#e2e8f0',
+                          color: isOpen ? '#ffffff' : '#94a3b8',
+                          boxShadow: isOpen ? '0 4px 12px rgba(22, 163, 74, 0.3)' : 'none',
                           '&:hover': {
-                            backgroundColor: isOpen ? '#1b5e20' : '#bdbdbd',
+                            background: isOpen ? 'linear-gradient(135deg, #15803d 0%, #166534 100%)' : '#e2e8f0',
                           }
                         }}
                       >
-                        {isOpen ? "Register" : "Registration Closed"}
+                        {isOpen ? "Register Now" : "Event Concluded"}
                       </Button>
                     </Box>
                   </Box>

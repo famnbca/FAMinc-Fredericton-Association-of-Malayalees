@@ -24,7 +24,7 @@ const Steps = () => {
   return (
     <Box 
       component="section" 
-      id="about" 
+      id="get-involved" 
       sx={{ 
         py: { xs: 6, md: 10 },
         background: 'transparent',

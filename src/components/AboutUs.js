@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Container, Grid, Button, Typography, Box } from '@mui/material';
 import { Slide, Zoom } from 'react-awesome-reveal';
 import { useNavigate } from 'react-router-dom';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import Loading from './Loading'; 
 
 const AboutUs = () => {
@@ -49,35 +50,49 @@ const AboutUs = () => {
       component="section" 
       id="about" 
       sx={{ 
-        py: { xs: 6, md: 10 },
+        py: { xs: 8, md: 12 },
         background: 'transparent',
       }}
     >
-      <Container>
-        <Grid container alignItems="center" spacing={5}>
+      <Container maxWidth="lg">
+        <Grid container alignItems="center" spacing={{ xs: 5, md: 8 }}>
           {/* Left Column: Text info */}
           <Grid item xs={12} md={6}>
-            <Slide direction="left" duration={700} triggerOnce={false}>
+            <Slide direction="left" duration={700} triggerOnce={true}>
               <Box sx={{ textAlign: 'left' }}>
                 <Typography 
-                  variant="h3" 
+                  variant="overline" 
                   sx={{ 
+                    color: 'primary.main', 
                     fontWeight: 800, 
-                    fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.5rem' },
-                    letterSpacing: '-0.02em',
-                    mb: 1
+                    letterSpacing: '0.12em',
+                    fontSize: '0.85rem' 
                   }}
                 >
-                  <Box component="span" sx={{ color: 'primary.main' }}>Malayalee</Box> Community
+                  ABOUT OUR COMMUNITY
                 </Typography>
                 
                 <Typography 
-                  variant="h5" 
+                  variant="h3" 
+                  sx={{ 
+                    fontWeight: 900, 
+                    fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.4rem' },
+                    letterSpacing: '-0.02em',
+                    mt: 0.5,
+                    mb: 1.5,
+                    color: '#0f172a'
+                  }}
+                >
+                  Malayalee <Box component="span" sx={{ color: 'primary.main' }}>Community</Box>
+                </Typography>
+                
+                <Typography 
+                  variant="h6" 
                   sx={{ 
                     fontWeight: 600, 
                     color: 'text.secondary', 
                     mb: 3,
-                    fontSize: { xs: '1.25rem', md: '1.5rem' },
+                    fontSize: { xs: '1.15rem', md: '1.3rem' },
                     lineHeight: 1.4
                   }}
                 >
@@ -89,61 +104,88 @@ const AboutUs = () => {
                     key={index} 
                     variant="body1" 
                     sx={{ 
-                      color: 'text.secondary', 
-                      lineHeight: 1.7, 
+                      color: '#475569', 
+                      lineHeight: 1.75, 
                       mb: 2.5,
-                      fontSize: '1.05rem' 
+                      fontSize: '1.02rem' 
                     }}
                   >
                     {paragraph}
                   </Typography>
                 ))}
 
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={() => navigate('/contactus')}
-                  sx={{
-                    px: 4,
-                    py: 1.25,
-                    fontWeight: 700,
-                    mt: 2,
-                    borderRadius: '30px',
-                    borderWidth: '2px',
-                    '&:hover': {
-                      borderWidth: '2px',
-                    }
-                  }}
-                >
-                  Get in touch
-                </Button>
+                <Box sx={{ display: 'flex', gap: 2, mt: 3, flexWrap: 'wrap' }}>
+                  <Button
+                    variant="contained"
+                    onClick={() => navigate('/aboutus')}
+                    endIcon={<ChevronRightIcon />}
+                    sx={{
+                      px: 4,
+                      py: 1.3,
+                      fontWeight: 700,
+                      fontSize: '0.92rem',
+                      borderRadius: '30px',
+                      background: 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)',
+                      boxShadow: '0 4px 14px rgba(230, 74, 25, 0.3)',
+                      '&:hover': {
+                        background: 'linear-gradient(135deg, #d84315 0%, #ac1900 100%)',
+                      }
+                    }}
+                  >
+                    Read Full Story
+                  </Button>
+
+                  <Button
+                    variant="outlined"
+                    onClick={() => navigate('/contactus')}
+                    sx={{
+                      px: 3.5,
+                      py: 1.3,
+                      fontWeight: 700,
+                      fontSize: '0.92rem',
+                      borderRadius: '30px',
+                      borderColor: 'rgba(0,0,0,0.15)',
+                      color: '#0f172a',
+                      '&:hover': {
+                        borderColor: '#e64a19',
+                        color: '#e64a19',
+                        backgroundColor: 'rgba(230, 74, 25, 0.04)',
+                      }
+                    }}
+                  >
+                    Get in Touch
+                  </Button>
+                </Box>
               </Box>
             </Slide>
           </Grid>
 
           {/* Right Column: Hero Image */}
           <Grid item xs={12} md={6}>
-            <Zoom duration={700} triggerOnce={false}>
+            <Zoom duration={700} triggerOnce={true}>
               <Box 
                 sx={{ 
-                  borderRadius: 4, 
+                  borderRadius: 5, 
                   overflow: 'hidden', 
-                  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.04)',
-                  border: '1px solid rgba(0, 0, 0, 0.05)',
+                  boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.1)',
+                  border: '1px solid rgba(0, 0, 0, 0.06)',
                   backgroundColor: '#ffffff',
+                  position: 'relative',
+                  p: 1.5
                 }}
               >
                 <Box 
                   component="img" 
                   src={aboutImage} 
-                  alt="Mission and Vision" 
+                  alt="FAM Community" 
                   sx={{ 
                     width: '100%', 
                     height: 'auto', 
                     display: 'block',
-                    transition: 'transform 0.5s ease',
+                    borderRadius: 4,
+                    transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)',
                     '&:hover': {
-                      transform: 'scale(1.02)'
+                      transform: 'scale(1.03)'
                     }
                   }} 
                 />

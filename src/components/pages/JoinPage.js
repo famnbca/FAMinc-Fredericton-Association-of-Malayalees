@@ -6,15 +6,14 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Dialog,
   IconButton,
+  Paper,
+  Grid,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import StarsIcon from '@mui/icons-material/Stars';
 import Breadcrumbs from '../Breadcrumbs';
 import HelmetWrapper from '../HelmetWrapper';
 
@@ -22,11 +21,18 @@ const iframeSrc =
   'https://www.zeffy.com/ticketing/fredericton-association-of-malayaleesfam-memberships--2025';
 
 const eligibilityPoints = [
-  "Committed to furthering the FAM's objectives.",
-  'Submit a written application to the BOD in a prescribed format.',
-  'Pay the prescribed membership fees.',
-  'Be a resident of Fredericton and adjacent areas. Membership is not open to residents of cities or towns which have separate associations with similar objectives.',
-  'The BOD has full authority to approve or reject membership applications.',
+  "Committed to furthering the FAM's cultural, community, and social objectives.",
+  'Submit a written application or form to the BOD in the prescribed format.',
+  'Pay the prescribed yearly membership fees.',
+  'Be a resident of Fredericton and adjacent areas in New Brunswick. (Membership is not open to residents of cities or towns which already have separate associations with similar objectives).',
+  'The Board of Directors (BOD) has full authority to review and approve membership applications.',
+];
+
+const benefits = [
+  'Priority access to all signature cultural events & festivals (Onam, Vishu, Christmas, etc.)',
+  'Exclusive member discounts on celebration tickets and family events',
+  'Access to newcomer settlement assistance, job guidance, and community support network',
+  'Active voting rights in association meetings and opportunities for community leadership'
 ];
 
 const IframeModal = ({ open, onClose, src }) => (
@@ -43,7 +49,7 @@ const IframeModal = ({ open, onClose, src }) => (
   >
     <IconButton
       onClick={onClose}
-      sx={{ position: 'absolute', top: 16, right: 16, zIndex: 10, color: 'text.primary' }}
+      sx={{ position: 'absolute', top: 16, right: 16, zIndex: 10, color: '#0f172a', bgcolor: 'rgba(255,255,255,0.8)' }}
       aria-label="close"
       size="large"
     >
@@ -80,173 +86,218 @@ export default function JoinPage() {
   return (
     <>
       <HelmetWrapper 
-        pageTitle="Join Our Community" 
+        pageTitle="Membership & Join Us" 
         description="Join the Fredericton Association of Malayalees (FAM) in New Brunswick. Apply for your yearly membership and be a part of the vibrant cultural community."
       />
-      <Container
-        maxWidth="lg"
-        sx={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          py: { xs: 3, md: 6 },
-          px: { xs: 2, md: 4 },
-        }}
-      >
-        <Breadcrumbs />
+      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
+        <Container maxWidth="md">
+          <Box sx={{ mb: 4 }}>
+            <Breadcrumbs />
+          </Box>
 
-      <Typography
-        variant="h3"
-        gutterBottom
-        sx={{
-          fontWeight: 'bold',
-          color: 'primary.main',
-          fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
-          textAlign: 'center',
-          mb: 3,
-        }}
-      >
-        Fredericton Association of Malayalees
-      </Typography>
-
-      <Typography
-        variant="body1"
-        paragraph
-        sx={{ fontSize: { xs: '1rem', sm: '1.2rem' }, lineHeight: 1.7, maxWidth: 900, mx: 'auto' }}
-      >
-        Welcome to the Fredericton Association of Malayalees (FAM)! We are a vibrant community of Malayalees
-        residing in Fredericton, dedicated to promoting our rich culture, heritage, and values.
-      </Typography>
-
-      <Typography
-        variant="body1"
-        paragraph
-        sx={{ fontSize: { xs: '1rem', sm: '1.2rem' }, lineHeight: 1.7, maxWidth: 900, mx: 'auto' }}
-      >
-        By becoming a member, you can enjoy numerous benefits including:
-      </Typography>
-
-      <List
-        sx={{
-          maxWidth: 900,
-          mx: 'auto',
-          mb: 4,
-          px: 0,
-          '& .MuiListItem-root': { justifyContent: 'center' },
-        }}
-      >
-        {[
-          'Participate in cultural events and festivals',
-          'Network with other members of the community',
-          'Access to community support and resources',
-          'Opportunities for volunteering and community service',
-        ].map((benefit, i) => (
-          <ListItem key={i} sx={{ px: 2 }}>
-            <ListItemIcon>
-              <CheckCircleIcon sx={{ color: 'primary.main' }} />
-            </ListItemIcon>
-            <ListItemText
-              primary={benefit}
-              primaryTypographyProps={{
-                variant: 'h6',
-                sx: { fontSize: { xs: '1rem', sm: '1.2rem' }, textAlign: 'left' },
+          {/* Heading */}
+          <Box sx={{ textAlign: 'center', mb: 5 }}>
+            <Typography
+              variant="overline"
+              sx={{
+                color: 'primary.main',
+                fontWeight: 800,
+                letterSpacing: '0.12em',
+                fontSize: '0.85rem'
               }}
+            >
+              MEMBERSHIP 2025
+            </Typography>
+            <Typography
+              variant="h3"
+              component="h1"
+              sx={{
+                fontWeight: 900,
+                fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.4rem' },
+                letterSpacing: '-0.02em',
+                mt: 0.5,
+                mb: 2,
+                color: '#0f172a'
+              }}
+            >
+              Join Our <Box component="span" sx={{ color: 'primary.main' }}>Community</Box>
+            </Typography>
+            <Typography
+              variant="body1"
+              color="text.secondary"
+              sx={{ maxWidth: 700, mx: 'auto', fontSize: { xs: '1rem', sm: '1.1rem' }, lineHeight: 1.7 }}
+            >
+              Welcome to the Fredericton Association of Malayalees (FAM)! We are a registered non-profit dedicated to promoting Kerala’s vibrant culture, fostering fellowship, and supporting Malayalees across New Brunswick.
+            </Typography>
+          </Box>
+
+          {/* Benefits Grid */}
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, sm: 4.5 },
+              borderRadius: 4,
+              backgroundColor: '#ffffff',
+              border: '1px solid rgba(0, 0, 0, 0.06)',
+              boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.04)',
+              mb: 5
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 800,
+                color: '#0f172a',
+                mb: 3,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1.5,
+                fontSize: '1.3rem'
+              }}
+            >
+              <StarsIcon sx={{ color: '#f59e0b', fontSize: '1.6rem' }} /> Membership Benefits
+            </Typography>
+
+            <Grid container spacing={2}>
+              {benefits.map((benefit, i) => (
+                <Grid item xs={12} sm={6} key={i}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      alignItems: 'flex-start',
+                      gap: 1.5,
+                      p: 2,
+                      borderRadius: 3,
+                      backgroundColor: 'rgba(230, 74, 25, 0.03)',
+                      border: '1px solid rgba(230, 74, 25, 0.08)',
+                      height: '100%'
+                    }}
+                  >
+                    <CheckCircleIcon sx={{ color: 'primary.main', fontSize: '1.3rem', mt: 0.2, flexShrink: 0 }} />
+                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.primary', lineHeight: 1.5 }}>
+                      {benefit}
+                    </Typography>
+                  </Box>
+                </Grid>
+              ))}
+            </Grid>
+          </Paper>
+
+          {/* Eligibility Criteria Box */}
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, sm: 4.5 },
+              borderRadius: 4,
+              backgroundColor: '#ffffff',
+              border: '1px solid rgba(0, 0, 0, 0.06)',
+              boxShadow: '0 10px 30px -5px rgba(0, 0, 0, 0.04)',
+              mb: 5
+            }}
+          >
+            <Typography
+              variant="h5"
+              sx={{
+                fontWeight: 800,
+                color: '#0f172a',
+                mb: 2.5,
+                fontSize: '1.3rem'
+              }}
+            >
+              Eligibility & Guidelines
+            </Typography>
+
+            <Box
+              sx={{
+                border: '1px solid rgba(0, 0, 0, 0.08)',
+                borderRadius: 3,
+                p: 3,
+                maxHeight: 250,
+                overflowY: 'auto',
+                bgcolor: '#f8fafc',
+                fontSize: '0.92rem',
+                lineHeight: 1.7,
+              }}
+            >
+              <ol style={{ paddingLeft: '1.2rem', margin: 0 }}>
+                {eligibilityPoints.map((point, i) => (
+                  <li key={i} style={{ marginBottom: '0.6rem', color: '#334155' }}>
+                    {point}
+                  </li>
+                ))}
+              </ol>
+
+              <Typography variant="body2" sx={{ mt: 2, color: '#64748b', fontStyle: 'italic' }}>
+                A structured process is followed to ensure decisions are based on clear criteria. For individuals in NB who express interest, a self-declaration may be submitted for board review.
+              </Typography>
+            </Box>
+          </Paper>
+
+          {/* Acceptance and Action Button */}
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3, sm: 4 },
+              borderRadius: 4,
+              backgroundColor: '#ffffff',
+              border: '1px solid rgba(230, 74, 25, 0.15)',
+              boxShadow: '0 10px 30px -5px rgba(230, 74, 25, 0.08)',
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 2.5,
+            }}
+          >
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  sx={{
+                    color: 'primary.main',
+                    '&.Mui-checked': { color: 'primary.main' }
+                  }}
+                />
+              }
+              label={
+                <Typography variant="body2" sx={{ fontWeight: 600, color: '#0f172a' }}>
+                  I have read and meet the eligibility criteria above.
+                </Typography>
+              }
+              sx={{ flexGrow: 1 }}
             />
-          </ListItem>
-        ))}
-      </List>
+            <Button
+              variant="contained"
+              disabled={!agreed}
+              onClick={handleOpenModal}
+              sx={{
+                background: agreed 
+                  ? 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)'
+                  : 'rgba(0,0,0,0.12)',
+                color: '#ffffff',
+                px: 4,
+                py: 1.4,
+                fontSize: '0.95rem',
+                fontWeight: 700,
+                borderRadius: '30px',
+                whiteSpace: 'nowrap',
+                boxShadow: agreed ? '0 4px 14px rgba(230, 74, 25, 0.35)' : 'none',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #d84315 0%, #ac1900 100%)',
+                  transform: 'translateY(-1px)',
+                  boxShadow: '0 6px 20px rgba(230, 74, 25, 0.45)',
+                },
+              }}
+            >
+              Open Membership Form
+            </Button>
+          </Paper>
 
-      <Typography
-        variant="h5"
-        sx={{
-          fontWeight: 'bold',
-          color: 'primary.main',
-          maxWidth: 900,
-          mx: 'auto',
-          mb: 2,
-          mt: 4,
-          textAlign: 'center',
-        }}
-      >
-        To whom is the membership open?
-      </Typography>
-
-      <Box
-        sx={{
-          maxWidth: 900,
-          mx: 'auto',
-          border: '1px solid rgba(0, 0, 0, 0.12)',
-          borderRadius: 3,
-          p: 3,
-          mb: 3,
-          maxHeight: { xs: 220, sm: 300 },
-          overflowY: 'auto',
-          bgcolor: 'rgba(0, 0, 0, 0.02)',
-          fontSize: { xs: '0.9rem', sm: '1rem' },
-          lineHeight: 1.6,
-        }}
-      >
-        <ol style={{ paddingLeft: '1.25rem', margin: 0 }}>
-          {eligibilityPoints.map((point, i) => (
-            <li key={i} style={{ marginBottom: '0.7rem' }}>
-              {point}
-            </li>
-          ))}
-        </ol>
-
-        <Typography sx={{ mt: 2 }}>
-          A structured process is followed to ensure decisions are based on clear and objective criteria outlined in this
-          section. For NB individuals whom the board believe may not fully meet the established criteria but express
-          interest in joining, a self-declaration is required for consideration.
-        </Typography>
+          {/* Fullscreen modal with iframe */}
+          <IframeModal open={modalOpen} onClose={handleCloseModal} src={iframeSrc} />
+        </Container>
       </Box>
-
-      {/* Acceptance checkbox and button */}
-      <Box
-        sx={{
-          maxWidth: 900,
-          mx: 'auto',
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          mb: 4,
-          gap: 2,
-          px: 1,
-        }}
-      >
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={agreed}
-              onChange={(e) => setAgreed(e.target.checked)}
-              color="primary"
-            />
-          }
-          label="I have read and meet the eligibility criteria."
-          sx={{ flexGrow: 1 }}
-        />
-        <Button
-          variant="contained"
-          disabled={!agreed}
-          sx={{
-            backgroundColor: 'primary.main',
-            paddingX: 4,
-            paddingY: 1.5,
-            fontSize: { xs: '1rem', sm: '1.1rem' },
-            borderRadius: '50px',
-            boxShadow: 4,
-            '&:hover': { backgroundColor: 'primary.dark' },
-          }}
-          onClick={handleOpenModal}
-        >
-          Continue to Membership Form
-        </Button>
-      </Box>
-
-      {/* Fullscreen modal with iframe */}
-      <IframeModal open={modalOpen} onClose={handleCloseModal} src={iframeSrc} />
-    </Container>
     </>
   );
 }

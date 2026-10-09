@@ -5,19 +5,12 @@ import FullWidthImage from '../FullWidthImage';
 import BacklinkInfo from '../BacklinkInfo';
 import HelmetWrapper from '../HelmetWrapper';
 
-const LandingPage = React.lazy(() => import('../LandingPage'));
+const LandingPage = React.lazy(() => import('../Landingpage'));
 const AboutUs = React.lazy(() => import('../AboutUs'));
 const MissionVision = React.lazy(() => import('../MissionVision'));
-const FacebookPageEmbed = React.lazy(() => import('../FacebookPageEmbed'));
 const Steps = React.lazy(() => import('../Steps'));
 const JoinComponent = React.lazy(() => import('../JoinComponent'));
 const UpcomingEvent = React.lazy(() => import('../UpcomingEvent'));
-const CommunityImpact = React.lazy(() => import('../CommunityImpact'));
-
-
-
-
-
 
 const MainPage = React.memo(() => {
   const [loading, setLoading] = useState(true);
@@ -25,14 +18,12 @@ const MainPage = React.memo(() => {
   useEffect(() => {
     const preloadComponents = async () => {
       const components = [
-        import('../LandingPage'),
+        import('../Landingpage'),
         import('../AboutUs'),
         import('../MissionVision'),
-        import('../FacebookPageEmbed'),
         import('../Steps'),
         import('../JoinComponent'),
-        import('../UpcomingEvent'),
-        import('../CommunityImpact')
+        import('../UpcomingEvent')
       ];
 
       try {
@@ -53,28 +44,19 @@ const MainPage = React.memo(() => {
 
   return (
     <>
-    <HelmetWrapper 
-  pageTitle="" 
-  description="Join the Fredericton Association of Malayalees (FAM) in Canada to celebrate and promote the vibrant culture of Kerala. Connect with Malayalees, Indians in Fredericton, and New Brunswick." 
-/>
+      <HelmetWrapper 
+        pageTitle="" 
+        description="Join the Fredericton Association of Malayalees (FAM) in Canada to celebrate and promote the vibrant culture of Kerala. Connect with Malayalees, Indians in Fredericton, and New Brunswick." 
+      />
 
-          <Suspense fallback={<Loading loading={true} />}>
-  
+      <Suspense fallback={<Loading loading={true} />}>
         <Element name="home" id="home"><LandingPage /></Element>
-        {/* <CampaignTeaserComponent /> */}
         <Element name="about" id="about"><AboutUs /></Element>
         <Steps />
         <Element name="mission" id="mission"><MissionVision /></Element>
-    
- 
-        <CommunityImpact />
-        <FacebookPageEmbed />
-        <JoinComponent />
         <UpcomingEvent />
-
-        {/* <EventSponsorImages /> */}
+        <JoinComponent />
         <BacklinkInfo />
-         
         <FullWidthImage />
       </Suspense>
     </>

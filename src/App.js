@@ -199,13 +199,13 @@ class App extends React.Component {
             <Route path="/" element={<MainPage />} />
             <Route path="/aboutus" element={<AboutUsPage />} />
             <Route path="/events" element={<EventSection />} />
-            <Route path="/:eventId" element={loading ? <Loading loading={true} /> : <EventDetailWrapper />} />
             <Route path="/usefullinks" element={<UsefulLinks />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/joinus" element={<JoinPage />} />
             <Route path="/gallery" element={<Gallery />} />
-            <Route path="*" element={<NotFoundPage />} />
             <Route path="/savewayanad" element={<CampaignComponent />} />
+            <Route path="/:eventId" element={loading ? <Loading loading={true} /> : <EventDetailWrapper />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
         <Footer />

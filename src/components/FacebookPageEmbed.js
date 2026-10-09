@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { Box, Typography, CircularProgress, Button, Container, IconButton, Grid } from '@mui/material';
+import { Box, Typography, CircularProgress, Button, Container, Paper } from '@mui/material';
 import { FaFacebookF } from 'react-icons/fa';
 
 const FacebookPageEmbed = () => {
@@ -77,18 +77,18 @@ const FacebookPageEmbed = () => {
   }, [loadFacebookSDK, retryCount, maxRetries]);
 
   return (
-    <Container
-      sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        maxWidth: '1200px',
-        margin: 'auto',
-        
-      }}
-    >
-      <Grid container spacing={4} alignItems="center" justifyContent="center" >
-        <Grid item xs={12} md={10}>
+    <Box component="section" sx={{ py: { xs: 6, md: 9 } }}>
+      <Container maxWidth="md">
+        <Paper
+          elevation={0}
+          sx={{
+            borderRadius: 5,
+            overflow: 'hidden',
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+            boxShadow: '0 15px 35px -5px rgba(0, 0, 0, 0.08)'
+          }}
+        >
+          {/* Header */}
           <Box
             sx={{
               display: 'flex',
@@ -96,112 +96,111 @@ const FacebookPageEmbed = () => {
               alignItems: 'center',
               textAlign: 'center',
               color: 'white',
-              background: 'linear-gradient(135deg, #4267b2, #365899)',
-              padding: '2rem',
-              borderRadius: '16px 16px 0 0',
-              boxShadow: 2,
+              background: 'linear-gradient(135deg, #1877f2 0%, #0d5bbd 100%)',
+              py: 4,
+              px: 3,
             }}
           >
-            <IconButton
+            <Box
               sx={{
-                backgroundColor: 'white',
-                color: '#4267b2',
+                backgroundColor: 'rgba(255, 255, 255, 0.2)',
+                backdropFilter: 'blur(8px)',
                 borderRadius: '50%',
-                width: 70,
-                height: 70,
-                marginBottom: 2,
-                boxShadow: 4,
-                transition: 'background-color 0.3s ease, color 0.3s ease',
-                '&:hover': {
-                  backgroundColor: '#365899',
-                  color: 'white',
-                },
+                width: 60,
+                height: 60,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                mb: 2,
+                color: '#ffffff'
               }}
             >
-              <FaFacebookF size={35} />
-            </IconButton>
-            <Typography variant="h3" component="h1" sx={{ fontWeight: 'bold', marginBottom: 1, fontSize: { xs: '2rem', md: '3rem' }, }} >
-              Follow Us on <span style={{ color: '#ff6341' }}>Facebook</span>
+              <FaFacebookF size={28} />
+            </Box>
+            <Typography variant="h4" component="h2" sx={{ fontWeight: 800, mb: 1, fontSize: { xs: '1.6rem', md: '2.2rem' } }}>
+              Connect With Us on Facebook
             </Typography>
-            <Typography variant="body1" sx={{ opacity: 0.8 }}>
-              Stay updated with our latest news and events
+            <Typography variant="body2" sx={{ opacity: 0.9, maxWidth: '500px', fontSize: '0.95rem' }}>
+              Follow our page for the latest community news, photos, announcements, and festival updates!
             </Typography>
           </Box>
+
+          {/* Facebook Embed Area */}
           <Box
             ref={iframeRef}
             sx={{
               width: '100%',
-              height: '500px',
+              minHeight: '480px',
               display: 'flex',
+              flexDirection: 'column',
               justifyContent: 'center',
               alignItems: 'center',
               textAlign: 'center',
-              backgroundColor: '#f0f0f0',
-              borderRadius: '0 0 16px 16px',
-              boxShadow: 2,
-              overflow: 'hidden',
+              backgroundColor: '#f8fafc',
+              p: 2,
             }}
           >
             {loading ? (
-              <Box
-                sx={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: '100%',
-                  height: '100%',
-                  fontSize: '1.5rem',
-                  color: '#4267b2',
-                }}
-              >
-                <CircularProgress color="primary" />
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2, py: 6 }}>
+                <CircularProgress sx={{ color: '#1877f2' }} />
+                <Typography variant="body2" color="text.secondary">Loading Facebook Feed...</Typography>
               </Box>
             ) : (
-              <div
-                className="fb-page"
-                data-href="https://www.facebook.com/profile.php?id=61552104893247"
-                data-tabs="timeline"
-                data-width="500"
-                data-height="500"
-                data-small-header="false"
-                data-adapt-container-width="true"
-                data-hide-cover="false"
-                data-show-facepile="true"
-                style={{ width: '100%', height: '100%', overflow: 'hidden' }}
-              >
-                <blockquote
-                  cite="https://www.facebook.com/profile.php?id=61552104893247"
-                  className="fb-xfbml-parse-ignore"
+              <Box sx={{ width: '100%', display: 'flex', justifyContent: 'center', overflow: 'hidden' }}>
+                <div
+                  className="fb-page"
+                  data-href="https://www.facebook.com/profile.php?id=61552104893247"
+                  data-tabs="timeline"
+                  data-width="500"
+                  data-height="480"
+                  data-small-header="false"
+                  data-adapt-container-width="true"
+                  data-hide-cover="false"
+                  data-show-facepile="true"
+                  style={{ width: '100%', maxWidth: '500px' }}
                 >
-                  <a href="https://www.facebook.com/profile.php?id=61552104893247">
-                    Fredericton Association of Malayalees - FAM
-                  </a>
-                </blockquote>
-              </div>
+                  <blockquote
+                    cite="https://www.facebook.com/profile.php?id=61552104893247"
+                    className="fb-xfbml-parse-ignore"
+                  >
+                    <a href="https://www.facebook.com/profile.php?id=61552104893247">
+                      Fredericton Association of Malayalees - FAM
+                    </a>
+                  </blockquote>
+                </div>
+              </Box>
             )}
-            {retryCount >= maxRetries && (
+
+            <Box sx={{ mt: 3, pb: 1 }}>
               <Button
                 variant="contained"
                 href="https://www.facebook.com/profile.php?id=61552104893247"
                 target="_blank"
+                rel="noopener noreferrer"
+                startIcon={<FaFacebookF />}
                 sx={{
-                  marginTop: 2,
-                  backgroundColor: '#4267b2',
+                  borderRadius: '30px',
+                  backgroundColor: '#1877f2',
                   color: 'white',
+                  px: 3.5,
+                  py: 1.1,
+                  fontWeight: 700,
+                  fontSize: '0.88rem',
+                  boxShadow: '0 4px 12px rgba(24, 119, 242, 0.3)',
                   '&:hover': {
-                    backgroundColor: '#365899',
-                    transform: 'translateY(-5px)',
+                    backgroundColor: '#0d5bbd',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 6px 16px rgba(24, 119, 242, 0.4)',
                   },
-                  transition: 'background-color 0.3s ease, transform 0.3s ease',
                 }}
               >
-                Visit our Facebook Page
+                Visit Facebook Page
               </Button>
-            )}
+            </Box>
           </Box>
-        </Grid>
-      </Grid>
-    </Container>
+        </Paper>
+      </Container>
+    </Box>
   );
 };
 

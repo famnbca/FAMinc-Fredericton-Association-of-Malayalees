@@ -66,8 +66,8 @@ const UsefulLinks = () => {
   return (
     <>
       <HelmetWrapper 
-        pageTitle="Useful Links - Fredericton Association of Malayalees" 
-        description="Find essential resources and links for newcomers to Fredericton, New Brunswick, including health, housing, tax, and job search services."
+        pageTitle="Useful Links for Newcomers" 
+        description="Find essential resources and directory links for newcomers to Fredericton, New Brunswick, including health, housing, settlement, and job search services."
       />
       
       <Container 

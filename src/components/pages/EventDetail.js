@@ -80,7 +80,7 @@ const EventDetail = () => {
     <>
       <HelmetWrapper pageTitle={event.title} description={`Details for ${event.title}`} />
       
-      <Box sx={{ py: 6, mt: 8, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
         <Container maxWidth="lg">
           <Box sx={{ mb: 4 }}>
             <Breadcrumbs />

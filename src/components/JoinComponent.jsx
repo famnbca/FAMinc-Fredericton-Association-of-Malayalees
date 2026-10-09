@@ -10,101 +10,156 @@ const JoinComponent = () => {
   const navigate = useNavigate();
 
   return (
-    <Container
-      component={motion.div}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      whileHover={{ scale: 1.02 }}
-      sx={{
-        background: `linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${bgBack}) no-repeat center center fixed`,
-        backgroundSize: 'cover',
-        color: '#ffffff',
-        padding: { xs: '30px 20px', sm: '40px 30px', md: '60px 80px' },
-        borderRadius: '20px',
-        textAlign: 'center',
-        maxWidth: { xs: '90%', sm: '85%', md: '1200px' },
-        margin: 'auto',
-        overflow: 'hidden',
-        marginTop: '30px',
-      }}
-    >
-      <Box sx={{ maxWidth: '800px', margin: 'auto', mb: 4 }}>
-        <Typography
-          variant="h4"
-          component="h1"
-          sx={{
-            fontWeight: 'bold',
-            color: '#ffd54f',
-            mb: 3,
-            textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
-            fontSize: { xs: '1.8rem', sm: '2.4rem', md: '3rem' },
-          }}
-        >
-          Join the Fredericton Association of Malayalees today!
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{
-            mb: 4,
-            color: '#f5f5f5',
-            fontSize: { xs: '1rem', sm: '1.2rem', md: '1.5rem' },
-            lineHeight: 1.6,
-          }}
-        >
-          Become a member and be part of our vibrant community. Explore more resources in our{' '}
+    <Box sx={{ py: { xs: 6, md: 9 }, px: { xs: 2, sm: 3 } }}>
+      <Container
+        maxWidth="lg"
+        component={motion.div}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        sx={{
+          position: 'relative',
+          borderRadius: { xs: 4, md: 6 },
+          overflow: 'hidden',
+          p: { xs: 4, sm: 6, md: 8 },
+          textAlign: 'center',
+          boxShadow: '0 20px 40px -10px rgba(0, 0, 0, 0.25)',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${bgBack})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            zIndex: 0,
+            transform: 'scale(1.02)',
+            transition: 'transform 0.5s ease',
+          },
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(30, 41, 59, 0.82) 50%, rgba(230, 74, 25, 0.75) 100%)',
+            backdropFilter: 'blur(2px)',
+            zIndex: 1,
+          },
+          '&:hover::before': {
+            transform: 'scale(1.06)',
+          }
+        }}
+      >
+        <Box sx={{ position: 'relative', zIndex: 2, maxWidth: '820px', mx: 'auto' }}>
           <Typography
-            component="span"
-            onClick={() => navigate('/usefullinks')}
+            variant="overline"
             sx={{
-              fontWeight: 'bold',
-              color: '#ffca28',
-              textDecoration: 'underline',
-              cursor: 'pointer',
-              '&:hover': {
-                color: '#ff9800',
-              },
+              color: '#f59e0b',
+              fontWeight: 800,
+              letterSpacing: '0.12em',
+              fontSize: '0.85rem',
               display: 'inline-block',
-              padding: '2px 6px',
-              borderRadius: '4px',
-              textShadow: '1px 1px 3px rgba(0, 0, 0, 0.3)',
+              mb: 1
             }}
           >
-            Useful Links
+            BECOME A PART OF OUR FAMILY
           </Typography>
-          section.
-        </Typography>
-      </Box>
-      <Box
-        component={motion.div}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        sx={{ display: 'flex', justifyContent: 'center' }}
-      >
-        <Button
-          variant="contained"
-          onClick={() => navigate('/joinus')}
-          startIcon={<FaUserPlus />}
-          sx={{
-            backgroundColor: '#e64a19',
-            color: '#ffffff',
-            padding: { xs: '10px 20px', sm: '12px 24px', md: '14px 28px' },
-            borderRadius: '50px',
-            textTransform: 'none',
-            fontWeight: 'bold',
-            fontSize: { xs: '0.85rem', sm: '0.9rem', md: '1rem' },
-            boxShadow: '0 8px 15px rgba(0, 0, 0, 0.2)',
-            transition: 'all 0.3s ease-in-out',
-            '&:hover': {
-              backgroundColor: '#d84315',
-              boxShadow: '0 12px 20px rgba(0, 0, 0, 0.3)',
-            },
-          }}
-        >
-          Join Community
-        </Button>
-      </Box>
-    </Container>
+
+          <Typography
+            variant="h3"
+            sx={{
+              fontWeight: 900,
+              color: '#ffffff',
+              mb: 2.5,
+              textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+              fontSize: { xs: '1.9rem', sm: '2.5rem', md: '3.2rem' },
+              letterSpacing: '-0.02em',
+              lineHeight: 1.2
+            }}
+          >
+            Join the Fredericton Association of Malayalees Today!
+          </Typography>
+
+          <Typography
+            variant="body1"
+            sx={{
+              mb: 4,
+              color: 'rgba(255, 255, 255, 0.92)',
+              fontSize: { xs: '1rem', sm: '1.15rem' },
+              lineHeight: 1.7,
+              maxWidth: '680px',
+              mx: 'auto'
+            }}
+          >
+            Connect with fellow Malayalees, celebrate our vibrant festivals, support community initiatives, and access newcomer support programs across Fredericton and New Brunswick.
+          </Typography>
+
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: { xs: 'column', sm: 'row' },
+              gap: 2,
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={() => navigate('/joinus')}
+              startIcon={<FaUserPlus />}
+              sx={{
+                background: 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)',
+                color: '#ffffff',
+                px: { xs: 3.5, sm: 4.5 },
+                py: 1.4,
+                borderRadius: '35px',
+                fontWeight: 800,
+                fontSize: '1rem',
+                boxShadow: '0 6px 20px rgba(230, 74, 25, 0.45)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #d84315 0%, #ac1900 100%)',
+                  transform: 'translateY(-2px)',
+                  boxShadow: '0 8px 25px rgba(230, 74, 25, 0.6)',
+                },
+              }}
+            >
+              Join Our Community
+            </Button>
+
+            <Button
+              variant="outlined"
+              onClick={() => navigate('/usefullinks')}
+              sx={{
+                color: '#ffffff',
+                borderColor: 'rgba(255, 255, 255, 0.6)',
+                borderWidth: '2px',
+                px: { xs: 3.5, sm: 4 },
+                py: 1.3,
+                borderRadius: '35px',
+                fontWeight: 700,
+                fontSize: '0.95rem',
+                backdropFilter: 'blur(4px)',
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                '&:hover': {
+                  borderColor: '#ffffff',
+                  backgroundColor: 'rgba(255, 255, 255, 0.18)',
+                  borderWidth: '2px',
+                  transform: 'translateY(-2px)',
+                },
+              }}
+            >
+              Explore Newcomer Links
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 

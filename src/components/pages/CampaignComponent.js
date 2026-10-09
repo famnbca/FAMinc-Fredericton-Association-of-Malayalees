@@ -48,7 +48,7 @@ const CampaignComponent = () => {
                 pageTitle="Stand With Wayanad" 
                 description="Stand with Wayanad: Donate now to support landslide relief and rebuilding efforts. Join the campaign organized by the Fredericton Association of Malayalees."
             />
-            <Box sx={{ py: 6, mt: 8, minHeight: '100vh' }}>
+            <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
                 <Container maxWidth="lg">
                     <Box sx={{ mb: 4 }}>
                         <Breadcrumbs />

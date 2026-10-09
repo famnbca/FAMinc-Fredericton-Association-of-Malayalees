@@ -50,7 +50,7 @@ const AboutUsPage = () => {
 
   if (error) {
     return (
-      <Container sx={{ py: 6, textAlign: 'center' }}>
+      <Container sx={{ py: 12, textAlign: 'center' }}>
         <Typography variant="h6" color="error">{error}</Typography>
       </Container>
     );
@@ -62,10 +62,10 @@ const AboutUsPage = () => {
   return (
     <>
       <HelmetWrapper 
-        pageTitle="About Us - Fredericton Association of Malayalees" 
-        description="Learn more about the Fredericton Association of Malayalees." 
+        pageTitle="About Us" 
+        description="Learn more about the Fredericton Association of Malayalees (FAM), celebrating Kerala culture, building fellowship, and supporting newcomers in New Brunswick." 
       />
-      <Box sx={{ py: 6, mt: 8, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 6, md: 10 }, minHeight: '100vh' }}>
         <Container maxWidth="lg">
           <Box sx={{ mb: 4 }}>
             <Breadcrumbs />
@@ -74,12 +74,12 @@ const AboutUsPage = () => {
           <Grid container spacing={6} alignItems="center">
             {/* Title */}
             <Grid item xs={12}>
-              <Fade triggerOnce={false} direction="down" duration={500}>
+              <Fade triggerOnce={true} direction="down" duration={500}>
                 <Typography 
                   variant="h3" 
                   component="h1" 
                   sx={{ 
-                    fontWeight: 800, 
+                    fontWeight: 900, 
                     textAlign: 'center', 
                     letterSpacing: '-0.02em',
                     fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.5rem' }
@@ -95,7 +95,7 @@ const AboutUsPage = () => {
 
             {/* Description & Image 1 */}
             <Grid item xs={12} md={6}>
-              <Fade triggerOnce={false} direction="right" duration={500}>
+              <Fade triggerOnce={true} direction="left" duration={500}>
                 <Box sx={{ textAlign: 'left' }}>
                   {aboutData.about.description.map((paragraph, index) => (
                     <Typography 
@@ -116,13 +116,13 @@ const AboutUsPage = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Zoom triggerOnce={false} duration={700}>
+              <Zoom triggerOnce={true} duration={700}>
                 <Paper 
                   elevation={0}
                   sx={{ 
                     overflow: 'hidden', 
                     borderRadius: 4, 
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.06)',
                     border: '1px solid rgba(0,0,0,0.06)'
                   }}
                 >
@@ -138,7 +138,7 @@ const AboutUsPage = () => {
 
             {/* Statistics Bullet Grid */}
             <Grid item xs={12}>
-              <Slide triggerOnce={false} direction="left" duration={500}>
+              <Slide triggerOnce={true} direction="up" duration={500}>
                 <Grid container spacing={3}>
                   {aboutData.about.statistics.map((stat, index) => (
                     <Grid item xs={12} md={6} key={index}>
@@ -150,11 +150,17 @@ const AboutUsPage = () => {
                             sx={{
                               display: 'flex',
                               alignItems: 'center',
-                              p: 2,
+                              p: 2.2,
                               mb: 2,
                               borderRadius: 3,
-                              backgroundColor: 'rgba(230, 74, 25, 0.02)',
-                              border: '1px solid rgba(230, 74, 25, 0.05)',
+                              backgroundColor: '#ffffff',
+                              border: '1px solid rgba(230, 74, 25, 0.1)',
+                              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.02)',
+                              transition: 'transform 0.2s ease',
+                              '&:hover': {
+                                transform: 'translateX(4px)',
+                                borderColor: 'rgba(230, 74, 25, 0.3)'
+                              }
                             }}
                           >
                             <ListItemIcon sx={{ minWidth: 40 }}>
@@ -163,7 +169,7 @@ const AboutUsPage = () => {
                             <ListItemText
                               primary={item}
                               primaryTypographyProps={{ 
-                                fontSize: '1.05rem', 
+                                fontSize: '1.02rem', 
                                 fontWeight: 600, 
                                 color: 'text.primary',
                                 textAlign: 'left'
@@ -180,13 +186,13 @@ const AboutUsPage = () => {
 
             {/* Activities Section & Image 2 */}
             <Grid item xs={12} md={6}>
-              <Zoom triggerOnce={false} duration={700}>
+              <Zoom triggerOnce={true} duration={700}>
                 <Paper 
                   elevation={0}
                   sx={{ 
                     overflow: 'hidden', 
                     borderRadius: 4, 
-                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+                    boxShadow: '0 10px 30px rgba(0, 0, 0, 0.06)',
                     border: '1px solid rgba(0,0,0,0.06)'
                   }}
                 >
@@ -201,7 +207,7 @@ const AboutUsPage = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Fade triggerOnce={false} direction="left" duration={500}>
+              <Fade triggerOnce={true} direction="right" duration={500}>
                 <Box sx={{ textAlign: 'left' }}>
                   <Typography variant="h4" sx={{ color: 'primary.main', fontWeight: 800, mb: 2.5, letterSpacing: '-0.01em' }}>
                     Fredericton Association of Malayalees
@@ -226,16 +232,17 @@ const AboutUsPage = () => {
 
             {/* Mission & Vision Cards */}
             <Grid item xs={12} md={6}>
-              <Slide triggerOnce={false} direction="left" duration={500}>
+              <Slide triggerOnce={true} direction="left" duration={500}>
                 <Paper
                   elevation={0}
                   sx={{
                     p: 4,
                     borderRadius: 4,
-                    border: '1px solid rgba(0,0,0,0.06)',
+                    border: '1px solid rgba(230, 74, 25, 0.15)',
                     backgroundColor: '#ffffff',
                     height: '100%',
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.03)'
                   }}
                 >
                   <Typography 
@@ -259,22 +266,23 @@ const AboutUsPage = () => {
             </Grid>
 
             <Grid item xs={12} md={6}>
-              <Slide triggerOnce={false} direction="right" duration={500}>
+              <Slide triggerOnce={true} direction="right" duration={500}>
                 <Paper
                   elevation={0}
                   sx={{
                     p: 4,
                     borderRadius: 4,
-                    border: '1px solid rgba(0,0,0,0.06)',
+                    border: '1px solid rgba(245, 158, 11, 0.2)',
                     backgroundColor: '#ffffff',
                     height: '100%',
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.03)'
                   }}
                 >
                   <Typography 
                     variant="h5" 
                     sx={{ 
-                      color: 'primary.main', 
+                      color: '#d97706', 
                       fontWeight: 800, 
                       mb: 2, 
                       display: 'flex', 

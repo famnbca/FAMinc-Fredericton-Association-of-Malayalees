@@ -1,18 +1,67 @@
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+/* Typography and Design System Base */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
-/* Apply styles to all heading elements */
-h1, h2, h3, h4, h5, h6 {
-  margin: 0 0 15px 0;
-  color: #1a1a1a;
-  font-family: 'Outfit', 'Baloo 2', sans-serif !important;
+:root {
+  --primary-color: #e64a19;
+  --primary-hover: #d84315;
+  --primary-light: #fff0eb;
+  --secondary-color: #f59e0b;
+  --dark-color: #0f172a;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --bg-subtle: #f8fafc;
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 4px 10px -2px rgba(0, 0, 0, 0.02);
+  --card-hover-shadow: 0 20px 40px -10px rgba(230, 74, 25, 0.12), 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: var(--text-primary);
+  background-color: #fbfbfb;
+  overflow-x: hidden;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.MuiTypography-h1, .MuiTypography-h2, .MuiTypography-h3, 
+.MuiTypography-h4, .MuiTypography-h5, .MuiTypography-h6 {
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: var(--dark-color);
 }
 
-/* Apply styles to paragraph and link elements */
-p, a, span, li, button {
-  color: inherit;
-  font-family: 'Inter', 'Open Sans', sans-serif !important;
+/* Body & Buttons */
+p, a, span, li, button, input, textarea, select {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
 }
 
+/* Text selection */
+::selection {
+  background-color: rgba(230, 74, 25, 0.2);
+  color: #c5390c;
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
