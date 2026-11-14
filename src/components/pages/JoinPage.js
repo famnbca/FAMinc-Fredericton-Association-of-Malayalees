@@ -88,8 +88,15 @@ export default function JoinPage() {
       <HelmetWrapper 
         pageTitle="Membership & Join Us" 
         description="Join the Fredericton Association of Malayalees (FAM) in New Brunswick. Apply for your yearly membership and be a part of the vibrant cultural community."
+        structuredData={[{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          'name': 'Join Fredericton Association of Malayalees - Membership',
+          'url': 'https://famnb.ca/joinus',
+          'description': 'Join the Fredericton Association of Malayalees (FAM) in New Brunswick. Apply for your yearly membership and be a part of the vibrant cultural community.'
+        }]}
       />
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
         <Container maxWidth="md">
           <Box sx={{ mb: 4 }}>
             <Breadcrumbs />
@@ -106,7 +113,7 @@ export default function JoinPage() {
                 fontSize: '0.85rem'
               }}
             >
-              MEMBERSHIP 2025
+              MEMBERSHIP & COMMUNITY REGISTRATION
             </Typography>
             <Typography
               variant="h3"

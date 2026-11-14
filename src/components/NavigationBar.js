@@ -320,11 +320,20 @@ const NavigationBar = () => {
                 fontWeight: 700,
                 background: 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)',
                 boxShadow: '0 4px 12px rgba(230, 74, 25, 0.3)',
+                mb: 2,
               }}
               startIcon={<FontAwesomeIcon icon={faUsers} />}
             >
               Join Our Community
             </Button>
+            <Box sx={{ textAlign: 'center', pt: 1 }}>
+              <Typography variant="caption" sx={{ color: '#64748b', display: 'block', mb: 0.5 }}>
+                Fredericton, New Brunswick
+              </Typography>
+              <Typography variant="caption" sx={{ color: '#e64a19', fontWeight: 600 }}>
+                info@famnb.ca
+              </Typography>
+            </Box>
           </Box>
         </Drawer>
       </AppBar>

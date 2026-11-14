@@ -59,40 +59,75 @@ const AboutUsPage = () => {
   const aboutImage1 = `${process.env.PUBLIC_URL}/images/fredericton/Fredericton-image-1.jpg`;
   const aboutImage2 = `${process.env.PUBLIC_URL}/images/fredericton/Fredericton-image-2.jpg`;
 
+  const aboutSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    'name': 'About Fredericton Association of Malayalees',
+    'url': 'https://famnb.ca/aboutus',
+    'description': 'Learn more about the Fredericton Association of Malayalees (FAM), celebrating Kerala culture, building fellowship, and supporting newcomers in New Brunswick.',
+    'mainEntity': {
+      '@type': 'NGO',
+      'name': 'Fredericton Association of Malayalees',
+      'foundingDate': '2021',
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': 'Fredericton',
+        'addressRegion': 'NB',
+        'addressCountry': 'CA'
+      }
+    }
+  };
+
   return (
     <>
       <HelmetWrapper 
         pageTitle="About Us" 
         description="Learn more about the Fredericton Association of Malayalees (FAM), celebrating Kerala culture, building fellowship, and supporting newcomers in New Brunswick." 
+        structuredData={[aboutSchema]}
       />
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 6, md: 10 }, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 6, md: 10 }, minHeight: '100vh' }}>
         <Container maxWidth="lg">
-          <Box sx={{ mb: 4 }}>
-            <Breadcrumbs />
+          <Breadcrumbs />
+
+          {/* Section Header */}
+          <Box sx={{ textAlign: 'center', mb: { xs: 5, md: 7 } }}>
+            <Fade triggerOnce={true} direction="down" duration={500}>
+              <Typography
+                variant="overline"
+                sx={{
+                  color: 'primary.main',
+                  fontWeight: 800,
+                  letterSpacing: '0.12em',
+                  fontSize: '0.85rem'
+                }}
+              >
+                OUR STORY & HERITAGE
+              </Typography>
+              <Typography 
+                variant="h3" 
+                component="h1" 
+                sx={{ 
+                  fontWeight: 900, 
+                  letterSpacing: '-0.02em',
+                  fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.4rem' },
+                  mt: 0.5,
+                  mb: 1.5,
+                  color: '#0f172a'
+                }}
+              >
+                About <Box component="span" sx={{ color: 'primary.main' }}>Fredericton Association of Malayalees</Box>
+              </Typography>
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ maxWidth: 680, mx: 'auto', fontSize: { xs: '1rem', md: '1.15rem' }, lineHeight: 1.6 }}
+              >
+                Preserving cultural heritage, fostering community solidarity, and extending a warm helping hand to Malayalees and newcomers across Fredericton and New Brunswick.
+              </Typography>
+            </Fade>
           </Box>
 
           <Grid container spacing={6} alignItems="center">
-            {/* Title */}
-            <Grid item xs={12}>
-              <Fade triggerOnce={true} direction="down" duration={500}>
-                <Typography 
-                  variant="h3" 
-                  component="h1" 
-                  sx={{ 
-                    fontWeight: 900, 
-                    textAlign: 'center', 
-                    letterSpacing: '-0.02em',
-                    fontSize: { xs: '2.2rem', sm: '2.8rem', md: '3.5rem' }
-                  }}
-                >
-                  About{' '}
-                  <Box component="span" sx={{ color: 'primary.main' }}>
-                    Fredericton Association of Malayalees
-                  </Box>
-                </Typography>
-              </Fade>
-            </Grid>
-
             {/* Description & Image 1 */}
             <Grid item xs={12} md={6}>
               <Fade triggerOnce={true} direction="left" duration={500}>

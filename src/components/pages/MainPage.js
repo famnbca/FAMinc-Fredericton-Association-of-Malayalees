@@ -4,13 +4,15 @@ import Loading from '../Loading';
 import FullWidthImage from '../FullWidthImage';
 import BacklinkInfo from '../BacklinkInfo';
 import HelmetWrapper from '../HelmetWrapper';
+import { faqData } from '../FAQSection';
 
 const LandingPage = React.lazy(() => import('../Landingpage'));
 const AboutUs = React.lazy(() => import('../AboutUs'));
-const MissionVision = React.lazy(() => import('../MissionVision'));
 const Steps = React.lazy(() => import('../Steps'));
-const JoinComponent = React.lazy(() => import('../JoinComponent'));
+const MissionVision = React.lazy(() => import('../MissionVision'));
 const UpcomingEvent = React.lazy(() => import('../UpcomingEvent'));
+const JoinComponent = React.lazy(() => import('../JoinComponent'));
+const FAQSection = React.lazy(() => import('../FAQSection'));
 
 const MainPage = React.memo(() => {
   const [loading, setLoading] = useState(true);
@@ -22,8 +24,10 @@ const MainPage = React.memo(() => {
         import('../AboutUs'),
         import('../MissionVision'),
         import('../Steps'),
+        import('../UpcomingEvent'),
         import('../JoinComponent'),
-        import('../UpcomingEvent')
+        import('../FAQSection'),
+        import('../BacklinkInfo')
       ];
 
       try {
@@ -42,11 +46,26 @@ const MainPage = React.memo(() => {
     return <Loading loading={true} />;
   }
 
+  // Generate FAQ Schema for Google Rich Snippets
+  const faqSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': faqData.map(item => ({
+      '@type': 'Question',
+      'name': item.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': item.answer
+      }
+    }))
+  };
+
   return (
     <>
       <HelmetWrapper 
-        pageTitle="" 
-        description="Join the Fredericton Association of Malayalees (FAM) in Canada to celebrate and promote the vibrant culture of Kerala. Connect with Malayalees, Indians in Fredericton, and New Brunswick." 
+        pageTitle="Fredericton Association of Malayalees | FAM NB - Kerala Community in Canada" 
+        description="Official website of the Fredericton Association of Malayalees (FAM NB), a registered non-profit organization in New Brunswick. Discover Kerala cultural festivals (Onam, Vishu), newcomer settlement resources, community events, and family memberships." 
+        structuredData={[faqSchema]}
       />
 
       <Suspense fallback={<Loading loading={true} />}>
@@ -56,6 +75,7 @@ const MainPage = React.memo(() => {
         <Element name="mission" id="mission"><MissionVision /></Element>
         <UpcomingEvent />
         <JoinComponent />
+        <FAQSection />
         <BacklinkInfo />
         <FullWidthImage />
       </Suspense>

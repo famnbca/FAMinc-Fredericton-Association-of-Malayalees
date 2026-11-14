@@ -133,7 +133,8 @@ class App extends React.Component {
       }
       const eventsData = await response.json();
       
-      const updatedEvents = eventsData.map((event) => ({
+      const rawEvents = Array.isArray(eventsData) ? eventsData : (eventsData.events || []);
+      const updatedEvents = rawEvents.map((event) => ({
         eventId: event.title.replace(/\s+/g, '').toLowerCase(),
         isopen: event.isOpen,
       }));

@@ -3,21 +3,135 @@
 <head>
   <meta charset="UTF-8">
   <link rel="icon" href="%PUBLIC_URL%/favicon.ico">
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/images/logofam.avif">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
   <meta name="theme-color" content="#e64a19">
+  <meta name="msapplication-TileColor" content="#e64a19">
+
+  <!-- Primary Meta Tags for Search Engines & SEO -->
+  <title>Fredericton Association of Malayalees | FAM NB - Kerala Community in Canada</title>
+  <meta name="title" content="Fredericton Association of Malayalees | FAM NB - Kerala Community in Canada">
+  <meta name="description" content="Official website of the Fredericton Association of Malayalees (FAM), a registered non-profit organization in New Brunswick, Canada. Celebrating Kerala culture, festivals (Onam, Vishu), newcomer settlement support, and community events.">
+  <meta name="keywords" content="fredericton association of malayalees, fam nb, malayalees in fredericton, malayalees in new brunswick, kerala community canada, indians in fredericton, indians in new brunswick, indian association fredericton, onam in fredericton, malayalam canada, new brunswick multicultural, newcomer settlement fredericton, fam fredericton">
+  <meta name="author" content="Fredericton Association of Malayalees">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <link rel="canonical" href="https://famnb.ca/">
+
+  <!-- Local SEO & Geographic Tags for Fredericton, New Brunswick -->
+  <meta name="geo.region" content="CA-NB">
+  <meta name="geo.placename" content="Fredericton">
+  <meta name="geo.position" content="45.9636;-66.6431">
+  <meta name="ICBM" content="45.9636, -66.6431">
+
+  <!-- Open Graph / Facebook / LinkedIn / WhatsApp Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:site_name" content="Fredericton Association of Malayalees (FAM NB)">
+  <meta property="og:url" content="https://famnb.ca/">
+  <meta property="og:title" content="Fredericton Association of Malayalees | FAM NB - Kerala Cultural Community">
+  <meta property="og:description" content="Connecting Malayalees, Indians, and newcomers across Fredericton and New Brunswick. Celebrating cultural festivals, newcomer integration, and family events.">
+  <meta property="og:image" content="https://famnb.ca/images/heroimages/Fredericton_Sunset_2021.avif">
+  <meta property="og:image:alt" content="Fredericton Association of Malayalees Banner">
+
+  <!-- Twitter Card Data -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://famnb.ca/">
+  <meta name="twitter:title" content="Fredericton Association of Malayalees | FAM NB">
+  <meta name="twitter:description" content="Connecting Malayalees and the Indian diaspora in Fredericton & New Brunswick, Canada.">
+  <meta name="twitter:image" content="https://famnb.ca/images/heroimages/Fredericton_Sunset_2021.avif">
+  <meta name="twitter:image:alt" content="Fredericton Association of Malayalees (FAM NB)">
+
+  <!-- JSON-LD Structured Data for Immediate Crawler Indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "NGO",
+        "@id": "https://famnb.ca/#organization",
+        "name": "Fredericton Association of Malayalees",
+        "alternateName": ["FAM NB", "FAM Fredericton", "Fredericton Malayalee Association"],
+        "url": "https://famnb.ca",
+        "logo": "https://famnb.ca/images/logofam.avif",
+        "image": "https://famnb.ca/images/heroimages/Fredericton_Sunset_2021.avif",
+        "description": "A registered non-profit organization promoting cultural, social, and community activities of Malayalees in Fredericton and New Brunswick, Canada.",
+        "foundingDate": "2021",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Fredericton",
+          "addressRegion": "NB",
+          "addressCountry": "CA"
+        },
+        "areaServed": {
+          "@type": "AdministrativeArea",
+          "name": "New Brunswick"
+        },
+        "sameAs": [
+          "https://www.facebook.com/profile.php?id=61552104893247"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://famnb.ca/#website",
+        "url": "https://famnb.ca",
+        "name": "Fredericton Association of Malayalees",
+        "publisher": {
+          "@id": "https://famnb.ca/#organization"
+        },
+        "inLanguage": "en-CA"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Preconnect and Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="%PUBLIC_URL%/static/css/bootstrap.min.css">
   <link rel="stylesheet" href="%PUBLIC_URL%/static/css/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <title>Fredericton Association of Malayalees</title>
 
   <script src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
+  <!-- Netlify Identity Widget for CMS -->
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <noscript>
+    <div style="font-family: sans-serif; padding: 20px; max-width: 800px; margin: 0 auto; line-height: 1.6;">
+      <h1>Fredericton Association of Malayalees (FAM NB)</h1>
+      <p>Fredericton Association of Malayalees is a registered non-profit cultural organization established under the Society Act in 2021, promoting cultural, social, and charitable activities for Malayalees and newcomers in Fredericton and across New Brunswick, Canada.</p>
+      <h2>Quick Navigation</h2>
+      <ul>
+        <li><a href="/aboutus">About FAM - Mission and Vision</a></li>
+        <li><a href="/events">Events & Festivals (Onam, Vishu, Christmas)</a></li>
+        <li><a href="/joinus">Membership & Registration</a></li>
+        <li><a href="/usefullinks">Useful Links for Newcomers in Fredericton</a></li>
+        <li><a href="/gallery">Event Gallery</a></li>
+        <li><a href="/contactus">Contact Us</a></li>
+      </ul>
+      <p>Please enable JavaScript to enjoy the full interactive experience of the FAM website.</p>
+    </div>
+  </noscript>
+  <!-- Netlify Forms Discovery (Build-time detection for SPA) -->
+  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <textarea name="message"></textarea>
+  </form>
+
   <div id="root"></div>
+  <script>
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", function(user) {
+        if (!user) {
+          window.netlifyIdentity.on("login", function() {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
 </body>
 </html>

@@ -33,7 +33,8 @@ const EventSection = () => {
           throw new Error('Failed to fetch events');
         }
         const eventsData = await response.json();
-        const updatedEvents = eventsData.map((event) => ({
+        const rawEvents = Array.isArray(eventsData) ? eventsData : (eventsData.events || []);
+        const updatedEvents = rawEvents.map((event) => ({
           ...event,
           eventId: event.title.replace(/\s+/g, '').toLowerCase(),
         }));
@@ -84,17 +85,45 @@ const EventSection = () => {
   // Extract unique years
   const uniqueYears = [...new Set(events.map(event => new Date(event.date).getFullYear()))].sort((a, b) => b - a);
 
+  // Generate Event Schema for Google Search Events Carousel
+  const eventSchemas = events.map(ev => ({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    'name': ev.title,
+    'startDate': ev.date,
+    'description': ev.description || ev.details,
+    'image': ev.image ? `https://famnb.ca${ev.image}` : 'https://famnb.ca/images/heroimages/Fredericton_Sunset_2021.avif',
+    'eventStatus': 'https://schema.org/EventScheduled',
+    'eventAttendanceMode': 'https://schema.org/OfflineEventAttendanceMode',
+    'location': {
+      '@type': 'Place',
+      'name': ev.location || 'Fredericton, NB',
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': 'Fredericton',
+        'addressRegion': 'NB',
+        'addressCountry': 'CA'
+      }
+    },
+    'organizer': {
+      '@type': 'Organization',
+      'name': 'Fredericton Association of Malayalees',
+      'url': 'https://famnb.ca'
+    }
+  }));
+
   return (
-    <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }} className="event-section-page">
+    <Box sx={{ pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }} className="event-section-page">
       <HelmetWrapper 
         pageTitle="Events & Celebrations" 
         description="Explore upcoming festivals, Onam feasts, cultural celebrations, sports tournaments, and community gatherings organized by the Fredericton Association of Malayalees." 
+        structuredData={eventSchemas}
       />
       <Container maxWidth="lg">
         <Breadcrumbs />
         
         {/* Header */}
-        <Box sx={{ textAlign: 'center', mb: 5, mt: 2 }}>
+        <Box sx={{ textAlign: 'center', mb: 5, mt: 1 }}>
           <Typography
             variant="overline"
             sx={{

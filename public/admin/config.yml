@@ -1,0 +1,33 @@
+backend:
+  name: git-gateway
+  branch: master
+
+# Media settings
+media_folder: "public/images/events"
+public_folder: "/images/events"
+
+collections:
+  - name: "events_collection"
+    label: "Events Management"
+    files:
+      - name: "events_list"
+        label: "Events List"
+        file: "public/config/events.json"
+        format: "json"
+        fields:
+          - label: "Events"
+            name: "events"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.date}})"
+            fields:
+              - { label: "Event Title", name: "title", widget: "string" }
+              - { label: "Date (YYYY-MM-DD)", name: "date", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+              - { label: "Time (e.g. 11:00 AM - 6:00 PM)", name: "time", widget: "string", required: false }
+              - { label: "Location / Venue Address", name: "location", widget: "string", required: false }
+              - { label: "Short Summary", name: "description", widget: "text" }
+              - { label: "Full Details & Description", name: "details", widget: "text", required: false }
+              - { label: "Event Poster Image", name: "image", widget: "image", required: false }
+              - { label: "Is Registration Open?", name: "isOpen", widget: "boolean", default: true }
+              - { label: "Show on Homepage as Featured / Upcoming?", name: "upcomingEvent", widget: "boolean", default: false }
+              - { label: "Zeffy Ticket Form Embed URL", name: "formIframe", widget: "string", required: false }
+              - { label: "Google Map Embed URL", name: "performanceIframe", widget: "string", required: false }

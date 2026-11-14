@@ -7,7 +7,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import HelmetWrapper from '../HelmetWrapper';
 import Breadcrumbs from '../Breadcrumbs';
-import EventSponsorImages from '../EventSponsorImages';
 import './EventDetail.css';
 
 const ModalComponent = lazy(() => import('../ModalComponent'));
@@ -20,7 +19,8 @@ const fetchEventData = async (eventId, setEvent, setLoading, setError) => {
       throw new Error('Failed to fetch events');
     }
     const eventsData = await response.json();
-    const event = eventsData.find(event => event.title.replace(/\s+/g, '').toLowerCase() === eventId);
+    const rawEvents = Array.isArray(eventsData) ? eventsData : (eventsData.events || []);
+    const event = rawEvents.find(event => event.title.replace(/\s+/g, '').toLowerCase() === eventId);
     setEvent(event);
     setLoading(false);
   } catch (error) {
@@ -78,13 +78,14 @@ const EventDetail = () => {
 
   return (
     <>
-      <HelmetWrapper pageTitle={event.title} description={`Details for ${event.title}`} />
+      <HelmetWrapper 
+        pageTitle={event.title} 
+        description={`Details for ${event.title} organized by the Fredericton Association of Malayalees.`} 
+      />
       
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
         <Container maxWidth="lg">
-          <Box sx={{ mb: 4 }}>
-            <Breadcrumbs />
-          </Box>
+          <Breadcrumbs />
           
           {eventClosed && (
             <Alert severity="error" sx={{ mb: 4, borderRadius: 3 }}>
@@ -278,11 +279,6 @@ const EventDetail = () => {
           <ModalComponent open={modalType === 'performance'} handleClose={handleModalClose} iframeSrc={event.performanceIframe} />
         </Suspense>
       )}
-
-      {/* Sponsors component */}
-      <Box sx={{ mt: 6, borderTop: '1px solid rgba(0,0,0,0.06)', backgroundColor: 'rgba(0,0,0,0.01)' }}>
-        <EventSponsorImages />
-      </Box>
     </>
   );
 };

@@ -3,6 +3,7 @@ import { Container, Grid, Card, CardContent, Typography, Box, TextField, Tabs, T
 import { LocalHospital, Work, Groups, Link as LinkIcon, Search, Launch, LocationCity, AccountBalance, ChildCare, CreditCard, Apartment } from '@mui/icons-material';
 import { motion, AnimatePresence } from 'framer-motion';
 import HelmetWrapper from './HelmetWrapper';
+import Breadcrumbs from './Breadcrumbs';
 
 const iconMapping = {
   LocationCity: <LocationCity fontSize="medium" />,
@@ -66,19 +67,28 @@ const UsefulLinks = () => {
   return (
     <>
       <HelmetWrapper 
-        pageTitle="Useful Links for Newcomers" 
+        pageTitle="Useful Links for Newcomers"
+        structuredData={[{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          'name': 'Newcomer Settlement Directory & Useful Links - Fredericton NB',
+          'url': 'https://famnb.ca/usefullinks',
+          'description': 'Essential resources and directory links for newcomers to Fredericton, New Brunswick, including health, housing, settlement, and job search services.'
+        }]} 
         description="Find essential resources and directory links for newcomers to Fredericton, New Brunswick, including health, housing, settlement, and job search services."
       />
       
       <Container 
         sx={{ 
-          py: { xs: 12, md: 15 }, 
+          pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 8, md: 12 }, 
           minHeight: '100vh', 
           display: 'flex', 
           flexDirection: 'column', 
           justifyContent: 'flex-start' 
         }}
       >
+        <Breadcrumbs />
+
         {/* Title */}
         <Typography 
           variant="h3" 

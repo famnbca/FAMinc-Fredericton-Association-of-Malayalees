@@ -1,5 +1,9 @@
-# Robots.txt for Fredericton Association of Malayalees (FAM)
+# Robots.txt for Fredericton Association of Malayalees (FAM NB)
+# Website: https://famnb.ca
+
 User-agent: *
 Allow: /
+Disallow: /admin/
 
+# Sitemaps
 Sitemap: https://famnb.ca/sitemap.xml

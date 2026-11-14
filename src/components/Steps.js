@@ -37,7 +37,7 @@ const Steps = () => {
             <Box sx={{ textAlign: 'left' }}>
               <Typography 
                 variant="h3" 
-                component="h1" 
+                component="h2" 
                 sx={{ 
                   fontWeight: 800, 
                   mb: 2,

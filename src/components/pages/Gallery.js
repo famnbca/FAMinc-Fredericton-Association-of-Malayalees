@@ -62,9 +62,16 @@ const Gallery = () => {
     <>
       <HelmetWrapper 
         pageTitle="Gallery - Fredericton Association of Malayalees" 
+        structuredData={[{
+          '@context': 'https://schema.org',
+          '@type': 'ImageGallery',
+          'name': 'Fredericton Association of Malayalees Photo Gallery',
+          'url': 'https://famnb.ca/gallery',
+          'description': 'Explore images and moments from Kerala festivals, Onam celebrations, picnics, and community gatherings hosted by the Fredericton Association of Malayalees in New Brunswick.'
+        }]} 
         description="Explore images and videos from events hosted by the Fredericton Association of Malayalees in Canada. Stay connected with our community through our vibrant gallery." 
       />
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
         <Container maxWidth="lg">
           <Box sx={{ mb: 4 }}>
             <Breadcrumbs />

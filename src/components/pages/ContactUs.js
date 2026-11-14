@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grid, Box, Typography, TextField, Button, Snackbar, Alert, IconButton, Tooltip, Paper } from '@mui/material';
+import { Container, Grid, Box, Typography, TextField, Button, Snackbar, Alert, IconButton, Tooltip, Paper, CircularProgress } from '@mui/material';
 import { Facebook, Instagram, WhatsApp, Email, LocationOn } from '@mui/icons-material';
 import Breadcrumbs from '../Breadcrumbs';
 import HelmetWrapper from '../HelmetWrapper';
@@ -9,6 +9,12 @@ const iconMap = {
   Instagram: <Instagram fontSize="medium" />,
   WhatsApp: <WhatsApp fontSize="medium" />,
   Email: <Email fontSize="medium" />
+};
+
+const encode = (data) => {
+  return Object.keys(data)
+    .map((key) => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
 };
 
 const ContactUs = () => {
@@ -21,6 +27,7 @@ const ContactUs = () => {
   });
 
   const [socialLinks, setSocialLinks] = useState([]);
+  const [submitting, setSubmitting] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
   const [alertSeverity, setAlertSeverity] = useState('success');
@@ -41,31 +48,27 @@ const ContactUs = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setSubmitting(true);
 
     try {
-      const response = await fetch('http://famnb.ca/send-email.php', {
+      const response = await fetch('/', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams(formData),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encode({ 'form-name': 'contact', ...formData })
       });
 
-      const result = await response.json();
-
-      if (result.success) {
+      if (response.ok) {
         setAlertSeverity('success');
-        setResponseMessage('Thank you! Your message has been sent. We will get back to you soon.');
+        setResponseMessage('Thank you! Your message has been sent successfully. We will get back to you soon.');
         setFormData({ name: '', email: '', message: '' });
       } else {
-        setAlertSeverity('error');
-        setResponseMessage('There was an error sending the message. Please reach out to info@famnb.ca directly.');
+        throw new Error('Netlify form submission failed');
       }
-      
-      setOpenSnackbar(true);
     } catch (error) {
-      setAlertSeverity('info');
-      setResponseMessage('Thank you! For direct assistance, you can also email us at info@famnb.ca.');
+      setAlertSeverity('error');
+      setResponseMessage('There was a problem sending your message. Please reach out to info@famnb.ca directly.');
+    } finally {
+      setSubmitting(false);
       setOpenSnackbar(true);
     }
   };
@@ -77,14 +80,34 @@ const ContactUs = () => {
     setOpenSnackbar(false);
   };
 
+  const contactSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    'name': 'Contact Fredericton Association of Malayalees',
+    'description': 'Contact page for inquiries about FAM membership, events, sponsorship, and newcomer settlement support in Fredericton, New Brunswick.',
+    'url': 'https://famnb.ca/contactus',
+    'mainEntity': {
+      '@type': 'Organization',
+      'name': 'Fredericton Association of Malayalees',
+      'email': 'info@famnb.ca',
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': 'Fredericton',
+        'addressRegion': 'NB',
+        'addressCountry': 'CA'
+      }
+    }
+  };
+
   return (
     <>
       <HelmetWrapper 
         pageTitle="Contact Us" 
         description="Get in touch with the Fredericton Association of Malayalees (FAM) in New Brunswick, Canada. Send inquiries regarding membership, cultural events, or newcomer support." 
+        structuredData={[contactSchema]}
       />
 
-      <Box sx={{ pt: { xs: 12, md: 16 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
+      <Box sx={{ pt: { xs: 10, sm: 12, md: 14 }, pb: { xs: 8, md: 12 }, minHeight: '100vh' }}>
         <Container maxWidth="lg">
           <Box sx={{ mb: 4 }}>
             <Breadcrumbs />
@@ -245,7 +268,21 @@ const ContactUs = () => {
                   Fill out the form below and a FAM volunteer or representative will respond promptly.
                 </Typography>
                 
-                <form onSubmit={handleSubmit}>
+                <form 
+                  name="contact" 
+                  method="POST" 
+                  data-netlify="true" 
+                  data-netlify-honeypot="bot-field" 
+                  onSubmit={handleSubmit}
+                >
+                  {/* Hidden fields required for Netlify Form processing */}
+                  <input type="hidden" name="form-name" value="contact" />
+                  <p style={{ display: 'none' }}>
+                    <label>
+                      Don’t fill this out if you're human: <input name="bot-field" onChange={handleChange} />
+                    </label>
+                  </p>
+
                   <Grid container spacing={2}>
                     <Grid item xs={12}>
                       <TextField 
@@ -256,6 +293,7 @@ const ContactUs = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
+                        disabled={submitting}
                         sx={{
                           '& .MuiOutlinedInput-root': {
                             borderRadius: 3
@@ -273,6 +311,7 @@ const ContactUs = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        disabled={submitting}
                         sx={{
                           '& .MuiOutlinedInput-root': {
                             borderRadius: 3
@@ -291,6 +330,7 @@ const ContactUs = () => {
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
+                        disabled={submitting}
                         sx={{
                           '& .MuiOutlinedInput-root': {
                             borderRadius: 3
@@ -303,6 +343,7 @@ const ContactUs = () => {
                   <Button 
                     type="submit" 
                     variant="contained" 
+                    disabled={submitting}
                     sx={{ 
                       mt: 3, 
                       py: 1.4, 
@@ -319,7 +360,14 @@ const ContactUs = () => {
                     }}
                     fullWidth
                   >
-                    Send Message
+                    {submitting ? (
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <CircularProgress size={20} color="inherit" />
+                        <span>Sending Message...</span>
+                      </Box>
+                    ) : (
+                      'Send Message'
+                    )}
                   </Button>
                 </form>
               </Paper>

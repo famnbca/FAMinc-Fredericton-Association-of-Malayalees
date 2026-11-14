@@ -1,45 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://famnb.ca/</loc>
-    <lastmod>2026-10-09</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://famnb.ca/images/heroimages/Fredericton_Sunset_2021.avif</image:loc>
+      <image:title>Fredericton Association of Malayalees</image:title>
+      <image:caption>Fredericton Sunset and Kerala cultural community in NB</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://famnb.ca/images/logofam.avif</image:loc>
+      <image:title>FAM NB Logo</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://famnb.ca/aboutus</loc>
-    <lastmod>2026-10-09</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://famnb.ca/images/heroimages/Aboutus-hero.png</image:loc>
+      <image:title>About Fredericton Association of Malayalees</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://famnb.ca/events</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://famnb.ca/images/events/onam.jpeg</image:loc>
+      <image:title>FAM Onam Celebration</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://famnb.ca/joinus</loc>
-    <lastmod>2026-10-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.85</priority>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://famnb.ca/images/heroimages/a1.jpg</image:loc>
+      <image:title>Join FAM Membership</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://famnb.ca/usefullinks</loc>
-    <lastmod>2026-10-09</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://famnb.ca/gallery</loc>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://famnb.ca/images/heroimages/Kerala-hero.avif</image:loc>
+      <image:title>FAM Cultural Gallery</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://famnb.ca/contactus</loc>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://famnb.ca/gallery</loc>
-    <lastmod>2026-10-09</lastmod>
+    <loc>https://famnb.ca/savewayanad</loc>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
-  </url>
-  <url>
-    <loc>https://famnb.ca/contactus</loc>
-    <lastmod>2026-10-09</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://famnb.ca/images/savewayanad/wayanad.jpg</image:loc>
+      <image:title>Save Wayanad Relief Campaign</image:title>
+    </image:image>
   </url>
 </urlset>
