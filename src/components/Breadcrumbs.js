@@ -6,11 +6,17 @@ import { useLocation, Link as RouterLink } from 'react-router-dom';
 
 const nameMap = {
   aboutus: 'About Us',
+  about: 'About Us',
   events: 'Events & Celebrations',
   usefullinks: 'Useful Links',
+  resources: 'Newcomer Resources',
+  newcomers: 'Newcomer Resources',
   contactus: 'Contact Us',
+  contact: 'Contact Us',
   joinus: 'Membership',
-  gallery: 'Gallery',
+  join: 'Membership',
+  membership: 'Membership',
+  gallery: 'Photo Gallery',
   savewayanad: 'Stand With Wayanad'
 };
 

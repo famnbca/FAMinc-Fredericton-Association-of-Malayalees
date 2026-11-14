@@ -2,11 +2,12 @@ backend:
   name: git-gateway
   branch: master
 
-# Media settings
+# Media upload folder
 media_folder: "public/images/events"
 public_folder: "/images/events"
 
 collections:
+  # 1. Events Management
   - name: "events_collection"
     label: "Events Management"
     files:
@@ -31,3 +32,50 @@ collections:
               - { label: "Show on Homepage as Featured / Upcoming?", name: "upcomingEvent", widget: "boolean", default: false }
               - { label: "Zeffy Ticket Form Embed URL", name: "formIframe", widget: "string", required: false }
               - { label: "Google Map Embed URL", name: "performanceIframe", widget: "string", required: false }
+
+  # 2. WhatsApp & Social Links Management
+  - name: "links_collection"
+    label: "WhatsApp & Social Links"
+    files:
+      - name: "social_media_links"
+        label: "Community Channels (WhatsApp, Facebook, Instagram)"
+        file: "public/config/socialmedialinks.json"
+        format: "json"
+        fields:
+          - label: "Quick Action Cards"
+            name: "cardData"
+            widget: "list"
+            summary: "{{fields.title}} ({{fields.link}})"
+            fields:
+              - { label: "Card Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "string" }
+              - { label: "URL / Group Invite Link", name: "link", widget: "string" }
+              - { label: "Icon (FaWhatsapp, FaFacebook, FaFileDownload)", name: "icon", widget: "string" }
+              - { label: "Card Color (Hex code)", name: "color", widget: "string" }
+
+          - label: "Social Footer & Contact Links"
+            name: "socialLinks"
+            widget: "list"
+            summary: "{{fields.platform}}: {{fields.url}}"
+            fields:
+              - { label: "Platform Name", name: "platform", widget: "string" }
+              - { label: "Page / Group Link", name: "url", widget: "string" }
+              - { label: "Icon Name (WhatsApp, Facebook, Instagram, Email)", name: "icon", widget: "string" }
+              - { label: "Brand Color (Hex code)", name: "color", widget: "string" }
+
+  # 3. Community Photo Gallery Management
+  - name: "gallery_collection"
+    label: "Photo Gallery"
+    files:
+      - name: "gallery_list"
+        label: "Community Photos"
+        file: "public/config/gallery.json"
+        format: "json"
+        fields:
+          - label: "Photos"
+            name: "images"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "Photo", name: "image", widget: "image" }
+              - { label: "Caption / Festival Title", name: "title", widget: "string", required: false }

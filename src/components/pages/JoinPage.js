@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Box,
@@ -14,6 +14,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import StarsIcon from '@mui/icons-material/Stars';
+import { WhatsApp, Groups } from '@mui/icons-material';
 import Breadcrumbs from '../Breadcrumbs';
 import HelmetWrapper from '../HelmetWrapper';
 
@@ -75,6 +76,20 @@ const IframeModal = ({ open, onClose, src }) => (
 export default function JoinPage() {
   const [agreed, setAgreed] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [whatsappLink, setWhatsappLink] = useState('https://chat.whatsapp.com/IXV3beMoynf4ud2ekBUqlM');
+
+  useEffect(() => {
+    fetch(`${process.env.PUBLIC_URL}/config/socialmedialinks.json`)
+      .then(res => res.json())
+      .then(data => {
+        const wa = (data.socialLinks || []).find(l => l.platform?.toLowerCase() === 'whatsapp')
+          || (data.cardData || []).find(c => c.title?.toLowerCase().includes('whatsapp'));
+        if (wa && (wa.url || wa.link)) {
+          setWhatsappLink(wa.url || wa.link);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleOpenModal = () => {
     if (agreed) {
@@ -254,6 +269,7 @@ export default function JoinPage() {
               alignItems: 'center',
               justifyContent: 'space-between',
               gap: 2.5,
+              mb: 5
             }}
           >
             <FormControlLabel
@@ -280,7 +296,7 @@ export default function JoinPage() {
               onClick={handleOpenModal}
               sx={{
                 background: agreed 
-                  ? 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)'
+                    ? 'linear-gradient(135deg, #e64a19 0%, #c5390c 100%)'
                   : 'rgba(0,0,0,0.12)',
                 color: '#ffffff',
                 px: 4,
@@ -298,6 +314,78 @@ export default function JoinPage() {
               }}
             >
               Open Membership Form
+            </Button>
+          </Paper>
+
+          {/* Quick WhatsApp Community Card */}
+          <Paper
+            elevation={0}
+            sx={{
+              p: { xs: 3.5, sm: 4.5 },
+              borderRadius: 4,
+              background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.06) 0%, rgba(18, 140, 126, 0.03) 100%)',
+              border: '1px solid rgba(37, 211, 102, 0.25)',
+              display: 'flex',
+              flexDirection: { xs: 'column', md: 'row' },
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 3,
+              boxShadow: '0 10px 30px -5px rgba(37, 211, 102, 0.08)'
+            }}
+          >
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
+              <Box
+                sx={{
+                  width: 58,
+                  height: 58,
+                  borderRadius: '50%',
+                  backgroundColor: '#25D366',
+                  color: '#ffffff',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  boxShadow: '0 6px 18px rgba(37, 211, 102, 0.35)'
+                }}
+              >
+                <WhatsApp sx={{ fontSize: 32 }} />
+              </Box>
+              <Box>
+                <Typography variant="h6" sx={{ fontWeight: 800, color: '#0f172a', mb: 0.5 }}>
+                  Connect On WhatsApp
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ maxWidth: 480, lineHeight: 1.5 }}>
+                  Are you a newcomer in Fredericton or seeking quick community advice, event alerts, and ride shares? Join our official WhatsApp group.
+                </Typography>
+              </Box>
+            </Box>
+
+            <Button
+              variant="contained"
+              component="a"
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              startIcon={<Groups />}
+              sx={{
+                background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                color: '#ffffff',
+                px: 3.5,
+                py: 1.3,
+                fontWeight: 700,
+                fontSize: '0.95rem',
+                borderRadius: '30px',
+                whiteSpace: 'nowrap',
+                textTransform: 'none',
+                boxShadow: '0 4px 14px rgba(37, 211, 102, 0.35)',
+                '&:hover': {
+                  background: 'linear-gradient(135deg, #20ba5a 0%, #0d6e62 100%)',
+                  transform: 'translateY(-1px)',
+                  boxShadow: '0 6px 20px rgba(37, 211, 102, 0.45)'
+                }
+              }}
+            >
+              Join WhatsApp Group
             </Button>
           </Paper>
 

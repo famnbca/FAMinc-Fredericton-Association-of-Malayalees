@@ -198,10 +198,17 @@ class App extends React.Component {
         <Suspense fallback={<Loading loading={true} />}>
           <Routes>
             <Route path="/" element={<MainPage />} />
+            <Route path="/about" element={<AboutUsPage />} />
             <Route path="/aboutus" element={<AboutUsPage />} />
             <Route path="/events" element={<EventSection />} />
+            <Route path="/events/:eventId" element={loading ? <Loading loading={true} /> : <EventDetailWrapper />} />
+            <Route path="/resources" element={<UsefulLinks />} />
+            <Route path="/newcomers" element={<UsefulLinks />} />
             <Route path="/usefullinks" element={<UsefulLinks />} />
+            <Route path="/contact" element={<ContactUs />} />
             <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/join" element={<JoinPage />} />
+            <Route path="/membership" element={<JoinPage />} />
             <Route path="/joinus" element={<JoinPage />} />
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/savewayanad" element={<CampaignComponent />} />
