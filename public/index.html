@@ -96,6 +96,21 @@
   <script src="https://zeffy-scripts.s3.ca-central-1.amazonaws.com/embed-form-script.min.js"></script>
   <!-- Netlify Identity Widget for CMS -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    #nl-badge-frame,
+    iframe[title="Powered by Netlify"],
+    iframe[id*="nl-badge"],
+    .netlify-badge {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      width: 0 !important;
+      position: absolute !important;
+      left: -9999px !important;
+    }
+  </style>
 </head>
 <body>
   <noscript>
